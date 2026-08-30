@@ -1,0 +1,78 @@
+{
+  "id": "never-miss-after-hours",
+  "title": "Never miss after-hours",
+  "category": "Clinics",
+  "iconType": "moon",
+  "categories": [
+    "Clinics",
+    "Local services"
+  ],
+  "author": "mikhail",
+  "whatItRuns": "24/7 patient response",
+  "whatClientGets": "Zero missed inquiries",
+  "exampleOutcome": "+52% patient retention",
+  "aboutParagraphs": [
+    "Keeps clinics answering patients even after the front desk closes.",
+    "Automatically handles appointment requests, FAQ answers, and follow-up reminders around the clock. Patients get instant replies; your staff starts the day with a full, pre-qualified schedule."
+  ],
+  "videoUrl": "assets/demo.mp4",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "After-hours\nmessage",
+    "Instant\nreply",
+    "Appointment\nbooking",
+    "Reminder\nsent",
+    "Staff\nhandoff"
+  ],
+  "revenueMin": 12000,
+  "revenueMax": 38000,
+  "defaultClients": 12,
+  "maxClients": 20,
+  "reviews": [
+    {
+      "name": "Unknown user",
+      "rating": 5,
+      "text": "We used to lose patients who called after 6 pm. Now every message is answered in seconds and they book online. Patient volume is up 40% this quarter.",
+      "avatarUrl": ""
+    },
+    {
+      "name": "Sofia Andrade",
+      "rating": 4.5,
+      "text": "Simple to set up and the patients love how fast they get answers. The reminder flow alone cut no-shows by half.",
+      "avatarUrl": "assets/avatar-reviewer2.png"
+    }
+  ],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          {
+            "whenAIReplies": {
+              "update": {
+                "option": "OutsideOfWorkingHours"
+              }
+            }
+          },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You are a clinic assistant available outside of working hours. Greet the patient and help them book an appointment, answer common questions about services and hours, or confirm existing bookings. Let them know the team will follow up during business hours. Be empathetic, clear, and concise."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "Send a friendly reminder to patients who booked an appointment but have not confirmed. Include the appointment time and ask them to confirm or reschedule if needed."
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}
