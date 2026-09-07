@@ -5,7 +5,6 @@
   "category": "E-commerce",
   "iconType": "chat",
   "categories": ["E-commerce"],
-  "rating": 5,
   "author": "adrian-aramayo",
   "whatItRuns": "Consultas de pedidos y envíos",
   "whatClientGets": "Menos mensajes sin responder",

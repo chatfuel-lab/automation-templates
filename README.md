@@ -41,7 +41,7 @@ stripped there and kept everywhere else.
 | `title`                   | `string`                                             | Template name, up to 60 characters. Shown on the card and as the page heading.                          |
 | `category`                | `string`                                             | Primary category (one of the `Categories` values).                                                      |
 | `categories`              | `string[]`                                           | All categories the template belongs to. The primary one comes first.                                    |
-| `rating`                  | `number`                                             | Optional, 1.0 to 5.0. Shown on the card. Independent of `reviews` — a template can carry a rating with no reviews attached. |
+| `rating`                  | `number`                                             | Optional, 1.0 to 5.0. Only meaningful once the template has reviews; omit it otherwise.                 |
 | `iconType`                | `"cursor" \| "moon" \| "repeat" \| "chat" \| "grow"` | Icon type for the card.                                                                                 |
 | `author`                  | `string`                                             | Author ID (reference to a file in `authors/`).                                                          |
 | `whatItRuns`              | `string`                                             | Brief description of what the template runs, up to 40 characters (template page sidebar).               |
