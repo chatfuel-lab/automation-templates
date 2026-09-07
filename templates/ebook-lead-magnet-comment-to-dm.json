@@ -1,0 +1,157 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "ebook-lead-magnet-comment-to-dm",
+  "title": "Ebook opt-in funnel",
+  "category": "Fitness coaching",
+  "iconType": "cursor",
+  "categories": ["Fitness coaching", "Coaching & creators"],
+  "author": "joren-wouters",
+  "whatItRuns": "Ebook opt-ins from comments",
+  "whatClientGets": "An email list that fills itself",
+  "exampleOutcome": "Up to 77% of opt-ins leave an email",
+  "aboutParagraphs": [
+    "Claire Bartholic — The Planted Runner — coaches plant-based runners through marathon training, and wanted her Instagram to produce customers rather than likes.",
+    "This is the funnel Chatimize built for her, packaged as a template. Followers comment a keyword on any post, get a DM confirming what they asked for, hand over a name and an email, and receive the guide — the whole thing automated and synced to her email platform, so every opt-in lands on the list. On her account 3,373 people started the flow and 2,602 gave their name and email: a 77% conversion rate. Swap the keyword and the lead magnet and the same shape works for any coach with an audience and something worth giving away."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Comment\nposted",
+    "DM\nconfirms",
+    "Name\nasked",
+    "Email\ncaptured",
+    "Guide\ndelivered"
+  ],
+  "revenueMin": 10000,
+  "revenueMax": 30000,
+  "defaultClients": 12,
+  "maxClients": 28,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramPostComments",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "Check your DMs 📩",
+                "messagePrompt": "One short public sentence pointing at the DM. Never post the download link publicly.",
+                "likeContactComment": false
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Hey! Thanks for commenting — what can I help you with?",
+                "messagePrompt": "Open the DM by thanking them for the comment and answering what it actually asked.\nReply in the language they commented in. Two short paragraphs at most.\nStick to the knowledge base for anything about the coaching programs, the training plans or what they cost. Never invent a price, a discount or a result.\nIf they show interest in the free guide, confirm what it covers in one line and ask for their email."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "first_name", "description": "The name they want to be called by" },
+                  { "name": "email", "description": "Email address the guide is sent to and the list is built from" }
+                ]
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If they opened the DM and stopped before leaving an email, send one reminder a few hours later: name the guide they asked for and ask where to send it. Never send a second one."
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": [
+      {
+        "scope": "InstagramPostComments",
+        "name": "Lead magnet keyword",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["guide", "GUIDE", "ebook", "send it", "yes please", "me", "want it"]
+              }
+            }
+          },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "Sent it over — check your DMs 📩",
+                "messagePrompt": "One short public line pointing at the DM. Never post the link in the comments.",
+                "likeContactComment": false
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Hey! You asked for the guide 🙌 What's your first name?",
+                "messagePrompt": "They commented the campaign keyword, so they already want the guide. Do not restart the conversation.\nConfirm in one line what they are getting, then ask for their first name. Once you have it, use it and ask for the best email to send the guide to.\nWhen the email arrives, confirm it has been sent and say in one sentence what is inside.\nDo not pitch coaching in this conversation. If they ask about programs or prices, answer from the knowledge base and offer to keep talking."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "first_name", "description": "First name, asked before the email so the DM stays a conversation" },
+                  { "name": "email", "description": "Email the guide goes to; this is the opt-in that lands on the list" }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "scope": "InstagramPostComments",
+        "name": "Coaching and pricing questions",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["coaching", "coach", "program", "plan", "price", "how much", "cost", "join"]
+              }
+            }
+          },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "Just DM'd you the details 💬",
+                "messagePrompt": "One short public sentence pointing at the DM. Never quote a price publicly.",
+                "likeContactComment": false
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Hi! Here's how the coaching works.",
+                "messagePrompt": "They asked about coaching or what it costs. Lead with the answer, from the knowledge base: what the program includes, how long it runs and what it costs.\nIf the price depends on the format, give the range and say what decides where they land in it. Never invent a discount and never promise a race time or a result.\nClose by asking what they are training for right now, and offer the free guide if they are not ready to talk about coaching yet."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

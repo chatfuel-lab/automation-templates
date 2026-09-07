@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/author.schema.json",
+  "id": "alejavi-rivera",
+  "name": "Alejavi Rivera",
+  "avatarUrl": "assets/authors/alejavi-rivera.jpg",
+  "aboutParagraphs": [
+    "Creador radicado en España que hace que la inteligencia artificial resulte práctica en el día a día de un negocio. El contenido de Alejavi va al grano, con casos de uso reales, y ayuda a una audiencia que crece rápido a poner de verdad la IA a trabajar.",
+    "En este catálogo, Alejavi firma la plantilla Asistente de DM para negocios, que resuelve solo las preguntas frecuentes que llegan por Instagram."
+  ],
+  "socialLinks": [
+    "https://www.youtube.com/@alejavirivera",
+    "https://www.instagram.com/alejavirivera/"
+  ]
+}

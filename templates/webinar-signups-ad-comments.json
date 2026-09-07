@@ -4,7 +4,7 @@
   "title": "Webinar signups",
   "category": "Education",
   "iconType": "cursor",
-  "categories": ["Education"],
+  "categories": ["Education", "Coaching & creators"],
   "author": "chatfuel-team",
   "whatItRuns": "Ad comments into signups",
   "whatClientGets": "Registrations from ad spend",

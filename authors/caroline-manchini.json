@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/author.schema.json",
+  "id": "caroline-manchini",
+  "name": "Caroline Manchini",
+  "avatarUrl": "assets/authors/caroline-manchini.jpg",
+  "aboutParagraphs": [
+    "Especialista brasileira em marketing digital e Meta Official Creator, com uma comunidade de mais de 380 mil pessoas nas redes sociais. Caroline transforma estratégia de marketing complexa em conteúdo fácil de aplicar — de campanhas de marketing à construção de uma marca pessoal que vende.",
+    "Neste catálogo, Caroline assina o template Captura de leads no Instagram, que responde os comentários de cada publicação e leva o contato para a DM."
+  ],
+  "socialLinks": [
+    "https://www.youtube.com/@CarolineManchini",
+    "https://www.instagram.com/carolinemanchini/"
+  ]
+}

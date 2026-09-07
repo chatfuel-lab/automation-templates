@@ -4,7 +4,7 @@
   "title": "Course waitlist",
   "category": "Education",
   "iconType": "cursor",
-  "categories": ["Education", "Fitness coaching"],
+  "categories": ["Education", "Fitness coaching", "Coaching & creators"],
   "author": "chatfuel-team",
   "whatItRuns": "Story replies into a waitlist",
   "whatClientGets": "A list before launch day",

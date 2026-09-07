@@ -1,0 +1,13 @@
+{
+  "$schema": "../schema/author.schema.json",
+  "id": "roxana-falasco",
+  "name": "Roxana Falasco",
+  "avatarUrl": "assets/authors/roxana-falasco.jpg",
+  "aboutParagraphs": [
+    "Una de las creadoras de contenido educativo más reconocidas del mundo hispanohablante, con más de 500 mil suscriptores en YouTube. Roxana enseña a emprendedores y creadores a usar la IA para crear contenido, cursos y marcas personales más rápido.",
+    "En este catálogo, Roxana firma la plantilla Inscripciones a cursos por DM, que responde las dudas sobre programas y precios que llegan por Instagram."
+  ],
+  "socialLinks": [
+    "https://www.youtube.com/@RoxanaFalasco"
+  ]
+}

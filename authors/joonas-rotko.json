@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/author.schema.json",
+  "id": "joonas-rotko",
+  "name": "Joonas Rotko",
+  "avatarUrl": "assets/authors/joonas-rotko.png",
+  "aboutParagraphs": [
+    "Joonas Rotko runs thatmarketingbuddy.com, where he scores marketing software on AI-stack fit: MCP support, API quality, and how well a tool slots into agent workflows. Previously, co-owner of a Google Premier Partner agency for over ten years.",
+    "In this catalog, Joonas contributed B2B demo request qualifier, a WhatsApp flow for the demo requests that arrive from paid ads."
+  ],
+  "socialLinks": [
+    "https://thatmarketingbuddy.com/",
+    "https://www.linkedin.com/in/joonasrotko/"
+  ]
+}

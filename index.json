@@ -2,6 +2,33 @@
   "$schema": "./schema/index.schema.json",
   "templates": [
     {
+      "id": "asistente-de-dm-para-negocios-locales",
+      "title": "Asistente de DM para negocios",
+      "category": "Local services",
+      "categories": [
+        "Local services",
+        "Professional services"
+      ],
+      "iconType": "chat",
+      "author": "alejavi-rivera",
+      "whatItRuns": "Preguntas frecuentes en Instagram",
+      "whatClientGets": "Respuestas en segundos",
+      "exampleOutcome": "Hasta 70% de mensajes resueltos solos"
+    },
+    {
+      "id": "atencion-de-pedidos-tienda-online-whatsapp",
+      "title": "Atención de pedidos por WhatsApp",
+      "category": "E-commerce",
+      "categories": [
+        "E-commerce"
+      ],
+      "iconType": "chat",
+      "author": "adrian-aramayo",
+      "whatItRuns": "Consultas de pedidos y envíos",
+      "whatClientGets": "Menos mensajes sin responder",
+      "exampleOutcome": "Hasta 60% menos consultas manuales"
+    },
+    {
       "id": "auto-repair-service-booking-whatsapp",
       "title": "Auto service booking",
       "category": "Local services",
@@ -13,6 +40,19 @@
       "whatItRuns": "Garage bookings on WhatsApp",
       "whatClientGets": "A full ramp schedule",
       "exampleOutcome": "Up to 40% fewer phone interruptions"
+    },
+    {
+      "id": "b2b-demo-requests-from-ads-whatsapp",
+      "title": "B2B demo request qualifier",
+      "category": "Professional services",
+      "categories": [
+        "Professional services"
+      ],
+      "iconType": "grow",
+      "author": "joonas-rotko",
+      "whatItRuns": "Demo requests from paid ads",
+      "whatClientGets": "Only qualified demos booked",
+      "exampleOutcome": "Up to 2x more demos from one budget"
     },
     {
       "id": "barbershop-rebooking-whatsapp",
@@ -41,6 +81,20 @@
       "whatItRuns": "Comments turned into DMs",
       "whatClientGets": "Bookings from every post",
       "exampleOutcome": "Up to 5x more DMs per post"
+    },
+    {
+      "id": "captura-de-leads-instagram-comentarios",
+      "title": "Captura de leads no Instagram",
+      "category": "Coaching & creators",
+      "categories": [
+        "Coaching & creators",
+        "Education"
+      ],
+      "iconType": "cursor",
+      "author": "caroline-manchini",
+      "whatItRuns": "Comentários que viram DM",
+      "whatClientGets": "Lista de e-mails que cresce sozinha",
+      "exampleOutcome": "Até 3x mais leads por publicação"
     },
     {
       "id": "cleaning-service-quote-requests-whatsapp",
@@ -112,6 +166,20 @@
       "exampleOutcome": "Up to 45% fewer missed lessons"
     },
     {
+      "id": "ebook-lead-magnet-comment-to-dm",
+      "title": "Ebook opt-in funnel",
+      "category": "Fitness coaching",
+      "categories": [
+        "Fitness coaching",
+        "Coaching & creators"
+      ],
+      "iconType": "cursor",
+      "author": "joren-wouters",
+      "whatItRuns": "Ebook opt-ins from comments",
+      "whatClientGets": "An email list that fills itself",
+      "exampleOutcome": "Up to 77% of opt-ins leave an email"
+    },
+    {
       "id": "gym-lapsed-member-winback-whatsapp",
       "title": "Lapsed member win-back",
       "category": "Fitness coaching",
@@ -152,6 +220,20 @@
       "whatItRuns": "Project intake for builders",
       "whatClientGets": "Site visits worth making",
       "exampleOutcome": "Up to 50% fewer wasted site visits"
+    },
+    {
+      "id": "inscripciones-a-cursos-instagram-dm",
+      "title": "Inscripciones a cursos por DM",
+      "category": "Education",
+      "categories": [
+        "Education",
+        "Coaching & creators"
+      ],
+      "iconType": "chat",
+      "author": "roxana-falasco",
+      "whatItRuns": "Dudas sobre cursos y precios",
+      "whatClientGets": "Más alumnos inscritos",
+      "exampleOutcome": "Hasta 2x más inscripciones por lanzamiento"
     },
     {
       "id": "kids-camp-registration-ad-leads",
@@ -282,7 +364,8 @@
       "category": "Fitness coaching",
       "categories": [
         "Fitness coaching",
-        "Education"
+        "Education",
+        "Coaching & creators"
       ],
       "iconType": "cursor",
       "author": "chatfuel-team",
@@ -296,7 +379,8 @@
       "category": "Education",
       "categories": [
         "Education",
-        "Fitness coaching"
+        "Fitness coaching",
+        "Coaching & creators"
       ],
       "iconType": "cursor",
       "author": "chatfuel-team",
@@ -386,6 +470,20 @@
       "exampleOutcome": "Up to 6x more listing enquiries"
     },
     {
+      "id": "recepcion-ia-empresas-de-servicios-whatsapp",
+      "title": "Recepción con IA para servicios",
+      "category": "Professional services",
+      "categories": [
+        "Professional services",
+        "Local services"
+      ],
+      "iconType": "grow",
+      "author": "oskr-leon",
+      "whatItRuns": "Primer contacto de clientes nuevos",
+      "whatClientGets": "Agenda llena sin llamadas",
+      "exampleOutcome": "Hasta 40% más solicitudes atendidas"
+    },
+    {
       "id": "rental-inquiry-autoresponder-instagram",
       "title": "Rental inquiry desk",
       "category": "Real estate",
@@ -473,7 +571,8 @@
       "title": "Webinar signups",
       "category": "Education",
       "categories": [
-        "Education"
+        "Education",
+        "Coaching & creators"
       ],
       "iconType": "cursor",
       "author": "chatfuel-team",
@@ -498,9 +597,44 @@
   ],
   "authors": [
     {
+      "id": "adrian-aramayo",
+      "name": "Adrian Aramayo",
+      "avatarUrl": "assets/authors/adrian-aramayo.jpg"
+    },
+    {
+      "id": "alejavi-rivera",
+      "name": "Alejavi Rivera",
+      "avatarUrl": "assets/authors/alejavi-rivera.jpg"
+    },
+    {
+      "id": "caroline-manchini",
+      "name": "Caroline Manchini",
+      "avatarUrl": "assets/authors/caroline-manchini.jpg"
+    },
+    {
       "id": "chatfuel-team",
       "name": "Chatfuel team",
       "avatarUrl": ""
+    },
+    {
+      "id": "joonas-rotko",
+      "name": "Joonas Rotko",
+      "avatarUrl": "assets/authors/joonas-rotko.png"
+    },
+    {
+      "id": "joren-wouters",
+      "name": "Joren Wouters",
+      "avatarUrl": ""
+    },
+    {
+      "id": "oskr-leon",
+      "name": "Oskr León",
+      "avatarUrl": "assets/authors/oskr-leon.jpg"
+    },
+    {
+      "id": "roxana-falasco",
+      "name": "Roxana Falasco",
+      "avatarUrl": "assets/authors/roxana-falasco.jpg"
     }
   ]
 }
