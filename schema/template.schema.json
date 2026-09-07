@@ -1,0 +1,377 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/chatfuel-lab/automation-templates/main/schema/template.schema.json",
+  "title": "TemplateDetail",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "category",
+    "categories",
+    "iconType",
+    "author",
+    "whatItRuns",
+    "whatClientGets",
+    "exampleOutcome",
+    "aboutParagraphs",
+    "videoUrl",
+    "knowledgeBaseUrl",
+    "funnelSteps",
+    "revenueMin",
+    "revenueMax",
+    "defaultClients",
+    "maxClients",
+    "reviews",
+    "fuelyAutomationTemplate"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Unique slug. Must match the filename. Used as the URL of /templates/{id}."
+    },
+    "title": { "type": "string", "minLength": 1, "maxLength": 60 },
+    "category": { "$ref": "#/$defs/category" },
+    "categories": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/category" },
+      "description": "All categories the template belongs to. The primary one comes first."
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Optional. Only meaningful once the template has reviews."
+    },
+    "iconType": { "enum": ["cursor", "moon", "repeat", "chat", "grow"] },
+    "author": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "whatItRuns": { "type": "string", "minLength": 1, "maxLength": 40 },
+    "whatClientGets": { "type": "string", "minLength": 1, "maxLength": 40 },
+    "exampleOutcome": { "type": "string", "minLength": 1, "maxLength": 60 },
+    "aboutParagraphs": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "videoUrl": { "type": "string" },
+    "knowledgeBaseUrl": { "type": "string" },
+    "funnelSteps": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Exactly 5 steps. A \\n inside a string is a line break in the UI."
+    },
+    "revenueMin": { "type": "integer", "minimum": 0 },
+    "revenueMax": { "type": "integer", "minimum": 0 },
+    "defaultClients": { "type": "integer", "minimum": 1 },
+    "maxClients": { "type": "integer", "minimum": 1 },
+    "reviews": { "type": "array", "items": { "$ref": "#/$defs/review" } },
+    "fuelyAutomationTemplate": { "$ref": "#/$defs/automationTemplate" }
+  },
+  "$defs": {
+    "category": {
+      "enum": [
+        "Beauty & aesthetics",
+        "Clinics",
+        "Real estate",
+        "Local services",
+        "Fitness coaching",
+        "Education"
+      ]
+    },
+    "review": {
+      "type": "object",
+      "required": ["name", "rating", "text", "avatarUrl"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "rating": { "type": "number", "minimum": 1, "maximum": 5 },
+        "text": { "type": "string", "minLength": 1 },
+        "avatarUrl": { "type": "string" }
+      }
+    },
+    "scope": {
+      "enum": [
+        "WhatsAppDirectMessages",
+        "WhatsAppClickFromAds",
+        "WhatsAppClickFromPosts",
+        "InstagramDirectMessages",
+        "InstagramPostComments",
+        "InstagramAdComments",
+        "InstagramStoryReplies",
+        "InstagramIgMeLinks",
+        "InstagramClickFromAds"
+      ],
+      "description": "The marketplace whitelist: WhatsApp and Instagram scopes only."
+    },
+    "automationTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "baseAutomations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["scope", "settings"],
+            "additionalProperties": false,
+            "properties": {
+              "scope": { "$ref": "#/$defs/scope" },
+              "settings": { "type": "array", "items": { "$ref": "#/$defs/setting" } }
+            }
+          }
+        },
+        "customAutomations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["scope", "name", "settings"],
+            "additionalProperties": false,
+            "properties": {
+              "scope": { "$ref": "#/$defs/scope" },
+              "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+              "settings": { "type": "array", "items": { "$ref": "#/$defs/setting" } }
+            }
+          }
+        }
+      }
+    },
+    "setting": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 1,
+      "additionalProperties": false,
+      "description": "Exactly one key per object.",
+      "properties": {
+        "whenAIReplies": {
+          "$ref": "#/$defs/settingArm",
+          "properties": {
+            "update": {
+              "type": "object",
+              "required": ["option"],
+              "additionalProperties": false,
+              "properties": { "option": { "enum": ["Always", "OutsideOfWorkingHours"] } }
+            }
+          }
+        },
+        "incomingMessages": {
+          "$ref": "#/$defs/settingArm",
+          "properties": {
+            "update": {
+              "type": "object",
+              "required": ["howToReply", "messagePrompt"],
+              "additionalProperties": false,
+              "properties": {
+                "howToReply": { "enum": ["UsingAI", "DontReply"] },
+                "messagePrompt": { "type": "string", "minLength": 1, "maxLength": 5000 }
+              }
+            }
+          }
+        },
+        "followUps": {
+          "$ref": "#/$defs/settingArm",
+          "properties": {
+            "update": {
+              "type": "object",
+              "required": ["howToSend", "messagePrompt"],
+              "additionalProperties": false,
+              "properties": {
+                "howToSend": { "enum": ["Send", "DontSend"] },
+                "messagePrompt": { "type": "string", "minLength": 1, "maxLength": 3000 }
+              }
+            }
+          }
+        },
+        "switchToHuman": {
+          "$ref": "#/$defs/settingArm",
+          "properties": {
+            "update": {
+              "type": "object",
+              "required": ["howToSwitch", "rules"],
+              "additionalProperties": false,
+              "properties": {
+                "howToSwitch": { "enum": ["SwitchToTeammates", "DontSwitch"] },
+                "rules": {
+                  "type": "array",
+                  "maxItems": 20,
+                  "items": {
+                    "type": "object",
+                    "required": ["switchingConditions", "messagePrompt"],
+                    "additionalProperties": false,
+                    "description": "assignees must never be set in a template.",
+                    "properties": {
+                      "switchingConditions": { "type": "string", "minLength": 1, "maxLength": 3000 },
+                      "messagePrompt": { "type": "string", "minLength": 1, "maxLength": 3000 }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "messageDelays": {
+          "$ref": "#/$defs/settingArm",
+          "properties": {
+            "update": {
+              "type": "object",
+              "required": ["enabled"],
+              "additionalProperties": false,
+              "properties": { "enabled": { "type": "boolean" } }
+            }
+          }
+        },
+        "collectContactInfo": {
+          "$ref": "#/$defs/settingArm",
+          "properties": {
+            "update": {
+              "type": "object",
+              "required": ["howToCollect", "captures"],
+              "additionalProperties": false,
+              "properties": {
+                "howToCollect": { "enum": ["CollectInfo", "DoNotCollectInfo"] },
+                "captures": {
+                  "type": "array",
+                  "maxItems": 40,
+                  "items": {
+                    "type": "object",
+                    "required": ["name", "description"],
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": { "type": "string", "minLength": 1 },
+                      "description": { "type": "string", "minLength": 1, "maxLength": 450 }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "bookingRules": {
+          "$ref": "#/$defs/settingArm",
+          "properties": {
+            "update": {
+              "type": "object",
+              "required": ["autonomyLevel"],
+              "additionalProperties": false,
+              "properties": {
+                "autonomyLevel": {
+                  "enum": [
+                    "CollectIntents",
+                    "BookWithTeammatesApproval",
+                    "BookWithTeammatesReview",
+                    "BookWithFullAutonomy",
+                    "DontBook"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "catalogImages": {
+          "$ref": "#/$defs/settingArm",
+          "properties": {
+            "update": {
+              "type": "object",
+              "required": ["whenToShow", "imagesPerCatalogItem"],
+              "additionalProperties": false,
+              "properties": {
+                "whenToShow": { "enum": ["Never", "OnceMentioned", "WhenAsked"] },
+                "imagesPerCatalogItem": { "type": "integer", "minimum": 1, "maximum": 10 }
+              }
+            }
+          }
+        },
+        "keywords": {
+          "$ref": "#/$defs/settingArm",
+          "properties": {
+            "update": {
+              "type": "object",
+              "required": ["reactTo", "keywords"],
+              "additionalProperties": false,
+              "properties": {
+                "reactTo": {
+                  "enum": [
+                    "AnyComment",
+                    "CommentThatContains",
+                    "CommentThatExactlyMatches",
+                    "CommentThatDoesNotContain"
+                  ]
+                },
+                "keywords": {
+                  "type": "array",
+                  "maxItems": 50,
+                  "items": { "type": "string", "minLength": 1, "maxLength": 50 }
+                }
+              }
+            }
+          }
+        },
+        "refLinks": {
+          "$ref": "#/$defs/settingArm",
+          "properties": {
+            "update": {
+              "type": "object",
+              "required": ["refs"],
+              "additionalProperties": false,
+              "properties": {
+                "refs": {
+                  "type": "array",
+                  "maxItems": 20,
+                  "items": { "type": "string", "minLength": 1, "maxLength": 100 }
+                }
+              }
+            }
+          }
+        },
+        "privateReply": {
+          "$ref": "#/$defs/settingArm",
+          "properties": {
+            "update": {
+              "type": "object",
+              "required": ["privateReplyHowToReply", "exactTextReply", "messagePrompt"],
+              "additionalProperties": false,
+              "properties": {
+                "privateReplyHowToReply": { "enum": ["UsingAI", "ExactText", "DontReply"] },
+                "exactTextReply": { "type": "string", "minLength": 1, "maxLength": 1000 },
+                "messagePrompt": { "type": "string", "minLength": 1, "maxLength": 3000 }
+              }
+            }
+          }
+        },
+        "publicReply": {
+          "$ref": "#/$defs/settingArm",
+          "properties": {
+            "update": {
+              "type": "object",
+              "required": ["publicReplyHowToReply", "exactTextReply", "messagePrompt", "likeContactComment"],
+              "additionalProperties": false,
+              "properties": {
+                "publicReplyHowToReply": { "enum": ["UsingAI", "ExactText", "DontReply"] },
+                "exactTextReply": { "type": "string", "minLength": 1, "maxLength": 1000 },
+                "messagePrompt": { "type": "string", "minLength": 1, "maxLength": 3000 },
+                "likeContactComment": {
+                  "const": false,
+                  "description": "Instagram scopes must keep this false."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "settingArm": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 1,
+      "description": "Exactly one of setInheritFromScope or update. setInheritFrom takes an automation id and cannot be used in a template.",
+      "properties": {
+        "setInheritFromScope": { "$ref": "#/$defs/scope" },
+        "update": { "type": "object" }
+      }
+    }
+  }
+}

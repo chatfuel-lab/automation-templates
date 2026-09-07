@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/author.schema.json",
+  "id": "chatfuel-team",
+  "name": "Chatfuel team",
+  "avatarUrl": "",
+  "aboutParagraphs": [
+    "The team behind Chatfuel, the AI agent platform for WhatsApp and Instagram used by agencies and businesses to answer, qualify and book over chat.",
+    "These templates are the automations we build most often with customers, packaged so an agency can install one, swap in the client's own services and prices, and go live the same day."
+  ],
+  "socialLinks": [
+    "https://chatfuel.com",
+    "https://www.instagram.com/chatfuel/"
+  ]
+}

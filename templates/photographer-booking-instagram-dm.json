@@ -1,0 +1,83 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "photographer-booking-instagram-dm",
+  "title": "Shoot enquiries",
+  "category": "Local services",
+  "iconType": "chat",
+  "categories": ["Local services", "Beauty & aesthetics"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Shoot enquiries on Instagram",
+  "whatClientGets": "Dates held, not lost",
+  "exampleOutcome": "Up to 2x more enquiries answered",
+  "aboutParagraphs": [
+    "A photographer's Instagram is the portfolio and the inbox at the same time, and enquiries arrive while they are shooting — which is to say, while they cannot answer.",
+    "This template holds the conversation until they can. It asks the date, the type of shoot, the location and roughly how many hours, gives the package prices from the price list, and explains what is included and how long the edit takes. Dates that are already booked get said out loud straight away, which is the single most useful thing an enquiry can hear."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "DM\nreceived",
+    "Shoot type\nasked",
+    "Date\nchecked",
+    "Package\nquoted",
+    "Date\nheld"
+  ],
+  "revenueMin": 7000,
+  "revenueMax": 25000,
+  "defaultClients": 10,
+  "maxClients": 24,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You handle enquiries for a photographer, answering Instagram DMs.\nAnswer in the language the person writes in. Two short paragraphs, one emoji at most.\nGet the date first — everything depends on whether it is free. Then ask what kind of shoot, where, and roughly how many hours.\nYou may quote the packages in the knowledge base, say what each includes, how many edited images come with it, how long delivery takes, and what the deposit is.\nNever promise a date the knowledge base does not show as free, never agree to a discount, and never commit to a style or a location the photographer has not listed.\nIf the date is taken, say so immediately and offer the two nearest free dates.\nFor weddings and commercial work, hand over — those are quoted individually."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "shoot_type", "description": "What kind of shoot they want" },
+                  { "name": "shoot_date", "description": "The date they have in mind" },
+                  { "name": "shoot_location", "description": "Where the shoot would take place" }
+                ]
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If they asked about a date and went quiet, send one message the next day: say whether the date is still free and ask if they want it held. Never send a second nudge."
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The enquiry is for a wedding, a commercial shoot or anything needing a custom quote",
+                    "messagePrompt": "Say these are quoted individually and the photographer will reply personally today."
+                  }
+                ]
+              }
+            }
+          },
+          { "catalogImages": { "update": { "whenToShow": "WhenAsked", "imagesPerCatalogItem": 3 } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

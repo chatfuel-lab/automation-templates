@@ -1,0 +1,76 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "med-spa-price-list-instagram-dm",
+  "title": "Med spa price list",
+  "category": "Beauty & aesthetics",
+  "iconType": "chat",
+  "categories": ["Beauty & aesthetics", "Clinics"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Treatment and price questions",
+  "whatClientGets": "Straight answers, fast",
+  "exampleOutcome": "Up to 60% fewer unanswered DMs",
+  "aboutParagraphs": [
+    "Med spa DMs are 90% the same four questions — what does it cost, does it hurt, how long is the downtime, how many sessions do I need — and every unanswered one is a consultation lost to the clinic down the road.",
+    "This template answers all four properly. It quotes only prices that exist in the knowledge base, describes what a single session realistically does versus what needs a course, and routes anything touching pregnancy, medication or a medical condition to a practitioner instead of guessing. Consultations get booked in the same conversation."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "DM\narrives",
+    "Treatment\nidentified",
+    "Price and\ndowntime",
+    "Suitability\nchecked",
+    "Consult\nbooked"
+  ],
+  "revenueMin": 16000,
+  "revenueMax": 48000,
+  "defaultClients": 10,
+  "maxClients": 22,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You are the front-desk assistant of a medical aesthetics clinic, answering Instagram DMs. Warm, precise, never pushy.\nAnswer in the language the person writes in. Keep it to two short paragraphs and use one emoji at most.\nFor each treatment you can say: what the session involves, how long it takes, how much downtime to expect, how many sessions a typical course runs to, and the price — all from the knowledge base. State prices plainly; never invent a discount or a package that is not listed.\nWhen someone asks about results, describe what a first session does and what needs a course of three. Never promise an outcome and never compare the clinic to another one.\nSensitive skin, pregnancy, breastfeeding, medication, or any medical condition: recommend the consultation first, explain in one sentence why, and hand over.\nWhen they want to come in, ask which treatment and which days and times of day suit them, then offer the two nearest free slots."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If they asked about a treatment and went quiet, check in once a few hours later: name the treatment, offer the free consultation, and offer the two nearest slots. Never send a second nudge."
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person asks whether a treatment is safe for a medical condition, a medication or a pregnancy",
+                    "messagePrompt": "Say a practitioner will answer this one and that the free consultation exists exactly for this."
+                  },
+                  {
+                    "switchingConditions": "The person is unhappy with a result or asks for a refund",
+                    "messagePrompt": "Apologise once, do not argue, and say the clinic manager will be in touch today."
+                  }
+                ]
+              }
+            }
+          },
+          { "catalogImages": { "update": { "whenToShow": "OnceMentioned", "imagesPerCatalogItem": 2 } } },
+          { "bookingRules": { "update": { "autonomyLevel": "CollectIntents" } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

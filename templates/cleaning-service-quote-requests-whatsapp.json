@@ -1,0 +1,72 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "cleaning-service-quote-requests-whatsapp",
+  "title": "Cleaning quote desk",
+  "category": "Local services",
+  "iconType": "grow",
+  "categories": ["Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Quote requests on WhatsApp",
+  "whatClientGets": "Quotable jobs, not vague chats",
+  "exampleOutcome": "Up to 3x more quotes sent same day",
+  "aboutParagraphs": [
+    "\"How much to clean my flat?\" is unanswerable, and the six messages it takes to make it answerable are the reason cleaning quotes go out two days late.",
+    "This template asks those six questions in the first minute: how many rooms and bathrooms, one-off or regular, does it include an oven or windows, is it an end-of-tenancy clean, which postcode, and when. It gives the published rate where one exists and says plainly when a job needs a human to price it. The office wakes up to jobs that can be quoted, not conversations that have to be started."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Enquiry\narrives",
+    "Property\nsized",
+    "Job type\nasked",
+    "Date and\narea",
+    "Quote\nsent"
+  ],
+  "revenueMin": 9000,
+  "revenueMax": 30000,
+  "defaultClients": 12,
+  "maxClients": 30,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You take quote requests for a cleaning company. Practical and quick.\nAnswer in the language the person writes in. Keep replies under 50 words.\nBefore anything else, find out: how many bedrooms and bathrooms, whether it is a one-off or a regular clean, whether they need extras like oven, fridge, windows or carpets, whether it is an end-of-tenancy clean, which area they are in, and when they want it done.\nQuote only rates that are in the knowledge base. If the job is outside the standard rate card — a deep clean, a building clean-up, a very large property — say it needs a proper quote and that the office will send one.\nNever promise a specific cleaner and never guarantee a same-day slot without checking."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "property_size", "description": "How many bedrooms and bathrooms the property has" },
+                  { "name": "clean_type", "description": "Whether it is a one-off, regular or end-of-tenancy clean" },
+                  { "name": "extras_needed", "description": "Any extras such as oven, windows, fridge or carpets" },
+                  { "name": "service_area", "description": "Which area or postcode the property is in" },
+                  { "name": "preferred_date", "description": "When they want the clean done" }
+                ]
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If someone started a quote request and stopped, send one message a few hours later asking only the single detail you still need to price the job. Never send a second nudge."
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "BookWithTeammatesApproval" } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "real-estate-buyer-qualification-whatsapp",
+  "title": "Buyer qualifier",
+  "category": "Real estate",
+  "iconType": "grow",
+  "categories": ["Real estate"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Buyer qualification on WhatsApp",
+  "whatClientGets": "Only serious buyers in the diary",
+  "exampleOutcome": "Up to 50% less time on dead leads",
+  "aboutParagraphs": [
+    "An agent's day disappears into conversations with people who will not buy this year, and the one who would is somewhere in the same unread list.",
+    "This template qualifies before a human is involved. It asks the four questions that decide everything — budget, area, property type and how soon they need to move — plus whether they need to sell first or already have financing lined up. Anyone who clears the bar is handed over with the answers attached; everyone else gets a useful reply and a place on the list without eating an afternoon."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Enquiry\narrives",
+    "Budget and\narea",
+    "Timeline\nchecked",
+    "Financing\nasked",
+    "Agent\nhandoff"
+  ],
+  "revenueMin": 24000,
+  "revenueMax": 90000,
+  "defaultClients": 6,
+  "maxClients": 15,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You qualify buyer enquiries for an estate agency. Professional, direct, never salesy.\nAnswer in the language the person writes in. Keep replies under 60 words.\nAsk, naturally and no more than two at a time: what they are looking for, which areas, what budget they are working to, how soon they want to move, whether they need to sell a property first, and whether they have a mortgage agreed in principle.\nYou may describe listings that are in the knowledge base — price, size, number of rooms, floor, and what is nearby. Never estimate what a property will sell for, never comment on whether prices are going up or down, and never give financial, tax or legal advice.\nIf they ask about a property that is not in the knowledge base, say the agent will check and hand over.\nOnce budget, area and timeline are known, say an agent will come back with matching properties."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "budget_range", "description": "The budget the buyer is working to" },
+                  { "name": "target_area", "description": "Which areas or neighbourhoods they are looking in" },
+                  { "name": "property_type", "description": "What kind of property they want and how many rooms" },
+                  { "name": "move_timeline", "description": "How soon they need to move" },
+                  { "name": "financing_status", "description": "Whether they have a mortgage agreed in principle or need to sell first" }
+                ]
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If the person stopped replying part-way through qualifying, send one message the next day picking up exactly where you left off — ask the single question you still need. Never send a second nudge."
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "Budget, area and timeline are all captured",
+                    "messagePrompt": "Say an agent will come back with properties that match, and when."
+                  },
+                  {
+                    "switchingConditions": "The person asks about mortgages, taxes, contracts or anything legal",
+                    "messagePrompt": "Say you cannot advise on that and that the agent will put them in touch with the right person."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "personal-trainer-comment-to-dm",
+  "title": "PT comment-to-DM",
+  "category": "Fitness coaching",
+  "iconType": "cursor",
+  "categories": ["Fitness coaching"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Comment keywords into DMs",
+  "whatClientGets": "A funnel out of every reel",
+  "exampleOutcome": "Up to 8x more DMs per reel",
+  "aboutParagraphs": [
+    "A personal trainer's reel does the marketing and then the trainer manually DMs two hundred people, which is why most of them never get the plan they asked for.",
+    "This template runs the whole handoff. Comment the keyword from the video and the plan arrives in the DM within seconds, with a short public reply so everyone else can see it works. A second rule catches the people asking about coaching itself — price, how many sessions, online or in person — and answers that instead of sending them a freebie they did not want."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Keyword\ncommented",
+    "Public\nreply",
+    "DM\nsent",
+    "Goal\nasked",
+    "Call\nbooked"
+  ],
+  "revenueMin": 8000,
+  "revenueMax": 32000,
+  "defaultClients": 10,
+  "maxClients": 25,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramPostComments",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "Sent it to your DMs 💪",
+                "messagePrompt": "One short public line pointing at the DM. Never post prices publicly.",
+                "likeContactComment": false
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Hey! Here's what you asked for.",
+                "messagePrompt": "Open with a friendly line about their comment, then send what the post promised. Ask one question about what they are training for. Never give training or nutrition advice."
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": [
+      {
+        "scope": "InstagramPostComments",
+        "name": "Free plan keyword",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["plan", "guide", "program", "programme", "workout", "send it", "me"]
+              }
+            }
+          },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "On its way to your DMs 💪",
+                "messagePrompt": "One short public line. Never post the link publicly.",
+                "likeContactComment": false
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Here's the plan you asked for 💪",
+                "messagePrompt": "They commented the keyword from the video and want the free plan. Send the link from the knowledge base in the first message — no preamble, no conditions attached.\nThen ask one question: what they are training for right now.\nNever give training or nutrition advice and never comment on their body. If they answer, say what the coaching packages are and offer a free intro call."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "scope": "InstagramPostComments",
+        "name": "Coaching enquiries",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["coaching", "price", "how much", "1:1", "one to one", "online", "sessions"]
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Hey! Here's how the coaching works.",
+                "messagePrompt": "They asked about coaching, not the freebie. Give the package prices from the knowledge base, say how many sessions each includes, and whether it is online or in person.\nAsk what they are training for and how many days a week they can train.\nNever prescribe a programme in the DM and never promise a result or a timeline. Offer the free intro call and the two nearest slots."
+              }
+            }
+          },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "DMed you the details 💬",
+                "messagePrompt": "One short public line. Never post prices publicly.",
+                "likeContactComment": false
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

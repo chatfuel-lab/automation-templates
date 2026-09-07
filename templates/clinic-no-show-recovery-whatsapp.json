@@ -1,0 +1,72 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "clinic-no-show-recovery-whatsapp",
+  "title": "No-show rescue",
+  "category": "Clinics",
+  "iconType": "repeat",
+  "categories": ["Clinics", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Confirmations and win-backs",
+  "whatClientGets": "Fewer empty chairs",
+  "exampleOutcome": "Up to 40% fewer no-shows",
+  "aboutParagraphs": [
+    "An empty chair costs a clinic the same as a busy one, and most no-shows are people who simply went quiet after asking about a slot.",
+    "This template chases the gap between interest and attendance. Anyone who asked about an appointment and stopped replying gets one follow-up that names the treatment they were asking about and offers to confirm; anyone who wants to move their visit can do it in the chat instead of phoning. Nobody is nudged twice, and a person asking to cancel outright goes to the team rather than into a loop."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Slot\ndiscussed",
+    "Silence\ndetected",
+    "One\nnudge",
+    "Confirm or\nreschedule",
+    "Chair\nfilled"
+  ],
+  "revenueMin": 9000,
+  "revenueMax": 30000,
+  "defaultClients": 14,
+  "maxClients": 30,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You look after appointments for a clinic. Your job is to get every discussed appointment either confirmed or moved.\nAnswer in the language the person writes in. Keep replies short — two sentences is usually enough.\nIf someone wants to reschedule, ask which day and time of day works and offer the two nearest free slots that match. If they want to cancel, accept it politely, ask if they would like to be put on the list for a later date, and do not try to talk them out of it.\nIf they ask a clinical question while rescheduling, answer only what is in the knowledge base and offer to have the team call them.\nNever guilt someone about a missed appointment. Never charge, threaten a fee, or mention one unless the knowledge base says the clinic has one, in which case state it plainly and once."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If the person asked about an appointment and then went quiet, send exactly one message a few hours later: name the treatment they asked about, offer the two nearest free slots, and ask which one to hold. If they still do not reply, stop."
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person has missed an appointment twice or disputes a late-cancellation fee",
+                    "messagePrompt": "Say a member of the team will call them to sort it out personally."
+                  }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "BookWithTeammatesApproval" } } },
+          { "messageDelays": { "update": { "enabled": true } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

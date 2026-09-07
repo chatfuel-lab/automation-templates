@@ -1,0 +1,105 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "lash-brow-studio-ad-leads",
+  "title": "Lash ad leads",
+  "category": "Beauty & aesthetics",
+  "iconType": "grow",
+  "categories": ["Beauty & aesthetics", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Instagram ad conversations",
+  "whatClientGets": "Qualified leads, not clicks",
+  "exampleOutcome": "Up to 40% lower cost per booking",
+  "aboutParagraphs": [
+    "Lash and brow ads are cheap to run and expensive to waste: the click costs the same whether the studio replies in one minute or one day.",
+    "This template picks up every chat opened from an Instagram ad, restates the offer the ad made so nobody feels bait-and-switched, and works out what the person actually wants — a full set or an infill, classic or volume, first time or a rebook. Those answers land on the contact record, so the studio can see which ad brings first-timers and which brings people who were coming anyway."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Ad\nclicked",
+    "Offer\nrestated",
+    "Set type\nasked",
+    "Details\nsaved",
+    "Slot\nbooked"
+  ],
+  "revenueMin": 8000,
+  "revenueMax": 26000,
+  "defaultClients": 14,
+  "maxClients": 30,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramClickFromAds",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "This person opened the chat from an Instagram ad for a lash and brow studio. Open by naming what the ad offered so the conversation starts where they expect.\nAnswer in the language they write in. Two short paragraphs, one emoji at most.\nWork out three things before offering slots: whether they want a full set or an infill, which style from the knowledge base, and whether they have had extensions before.\nYou can give prices, appointment length, aftercare basics and how long a set typically lasts, all from the knowledge base. Never promise how long a set will last on a specific person and never invent a discount that is not in the ad or the knowledge base.\nIf they mention an allergy, an eye condition or a reaction to a previous set, hand over to the studio."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "service_wanted", "description": "Whether they want a full set or an infill, and which style" },
+                  { "name": "first_time_client", "description": "Whether they have had lash or brow extensions before" },
+                  { "name": "preferred_time", "description": "Which days and times of day they can come in" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person mentions an allergy, an eye condition or a bad reaction to a previous set",
+                    "messagePrompt": "Say a technician will look at this before anything is booked and will message them shortly."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": [
+      {
+        "scope": "InstagramClickFromAds",
+        "name": "Infill and rebooking traffic",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["infill", "fill", "refill", "rebook", "top up", "existing"]
+              }
+            }
+          },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "They came from the ad already wearing extensions and want an infill. Skip the introduction.\nAsk when their last appointment was and whether it was done at this studio — an infill on someone else's work may need a removal first, and the knowledge base says what that costs.\nGive the infill price, say how long it takes, and offer the two nearest free slots."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If they asked about an infill and went quiet, send one message after a few hours: infills get harder to save the longer they wait, offer the two nearest slots. Never send a second nudge."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

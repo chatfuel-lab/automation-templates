@@ -1,0 +1,80 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "dermatology-consult-triage-whatsapp",
+  "title": "Skin consult triage",
+  "category": "Clinics",
+  "iconType": "chat",
+  "categories": ["Clinics", "Beauty & aesthetics"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Consultation intake on WhatsApp",
+  "whatClientGets": "Sorted enquiries, not chaos",
+  "exampleOutcome": "Up to half the admin time back",
+  "aboutParagraphs": [
+    "A dermatology practice gets three kinds of message on the same number: cosmetic enquiries, medical concerns, and people chasing a result — and they all queue behind each other.",
+    "This template sorts them before a human reads anything. The AI asks what the person is coming for, how long it has been going on and whether they have been to the clinic before, records the answers on the contact, and routes medical worries straight to the team while it keeps handling the cosmetic questions about price, downtime and how many sessions a course takes. The practice sees a triaged queue instead of an undifferentiated inbox."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Enquiry\narrives",
+    "Reason\nasked",
+    "Details\ncaptured",
+    "Route\nchosen",
+    "Consult\nbooked"
+  ],
+  "revenueMin": 15000,
+  "revenueMax": 45000,
+  "defaultClients": 8,
+  "maxClients": 20,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You are the front-desk assistant of a dermatology and aesthetics clinic. Warm, precise, never pushy.\nAnswer in the language the person writes in. Keep replies under 60 words unless a treatment needs explaining.\nStart every new conversation by finding out what they are coming for: a cosmetic treatment, a skin concern, or a follow-up on something they have already had done.\nFor cosmetic treatments you may explain what a session involves, how much downtime to expect, how many sessions a typical course runs to, and the price from the knowledge base. When someone asks about results, describe what one session does and what needs a course; never promise an outcome.\nNever diagnose. Never comment on a photo of a mole, a rash or a lesion beyond saying it needs to be seen in person. Pregnancy, medication and sensitive skin: recommend the consultation first and say why.\nBefore offering slots, make sure you know the treatment or concern, how long it has been going on, and whether they are an existing patient."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "treatment_interest", "description": "Which treatment or skin concern brought them in" },
+                  { "name": "concern_duration", "description": "How long they have had the concern, if they mention it" },
+                  { "name": "existing_patient", "description": "Whether they have been treated at the clinic before" },
+                  { "name": "preferred_time", "description": "Which days and times of day they can come in" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person describes a medical skin concern, sends a photo of one, or asks whether something is serious",
+                    "messagePrompt": "Say a clinician needs to look at this properly and that the team will come back to them shortly with an appointment."
+                  },
+                  {
+                    "switchingConditions": "The person is unhappy with a treatment they have already had",
+                    "messagePrompt": "Apologise once, do not argue, and say the clinic will call them today."
+                  }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "CollectIntents" } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

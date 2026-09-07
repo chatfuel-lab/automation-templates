@@ -1,0 +1,109 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "kids-camp-registration-ad-leads",
+  "title": "Camp registration",
+  "category": "Education",
+  "iconType": "grow",
+  "categories": ["Education", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Ad clicks into registrations",
+  "whatClientGets": "Places filled before term ends",
+  "exampleOutcome": "Up to 50% faster place filling",
+  "aboutParagraphs": [
+    "Camp places sell in a three-week window, to parents who are comparing four options at once and will book whichever one answers first.",
+    "This template answers instantly on every ad click. It gives the dates, the age brackets, the daily timings, what is included and what the sibling terms are, then collects the child's age and the week the parent wants so the office can hold a place. Medical forms, dietary requirements and anything about the child's needs go to a coordinator rather than being handled in a chat."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Ad\nclicked",
+    "Dates\nsent",
+    "Age\nchecked",
+    "Week\nchosen",
+    "Place\nheld"
+  ],
+  "revenueMin": 9000,
+  "revenueMax": 34000,
+  "defaultClients": 8,
+  "maxClients": 20,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramClickFromAds",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "This parent clicked an Instagram ad for a children's camp. Open by naming the camp and the season the ad was about.\nAnswer in the language they write in. Two short paragraphs, one emoji at most.\nGive from the knowledge base: the available weeks, the age brackets, daily start and finish times, what the price includes, whether lunch is provided, and the sibling discount if there is one.\nAsk the child's age and which week the parent wants — a place cannot be held without both.\nNever accept a booking for a child outside the published age range, never promise a specific group or coach, and never discuss another child.\nAnything about allergies, medication or a child's additional needs goes to the coordinator."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "child_age", "description": "The age of the child attending" },
+                  { "name": "camp_week", "description": "Which week the parent wants to book" },
+                  { "name": "sibling_count", "description": "How many children they are booking for" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The parent mentions allergies, medication, or a child's additional needs",
+                    "messagePrompt": "Say the camp coordinator handles this personally and will be in touch today."
+                  },
+                  {
+                    "switchingConditions": "The parent wants to pay, change a booking or ask for a refund",
+                    "messagePrompt": "Say the office will send the registration link and take it from there."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": [
+      {
+        "scope": "InstagramClickFromAds",
+        "name": "Price and availability from ads",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["price", "cost", "how much", "available", "places", "spots", "discount"]
+              }
+            }
+          },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "They opened the chat asking about price or availability. Lead with the weekly price and which weeks still have places, both from the knowledge base.\nThen say what the price includes and mention the sibling discount if one exists.\nNever invent a discount and never say a week is available if the knowledge base does not show it. Ask the child's age and which week they want."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If the parent asked about places and went quiet, send one message the next morning: say how many places are left in the week they asked about. Never send a second nudge."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

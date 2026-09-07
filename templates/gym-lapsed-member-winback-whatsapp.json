@@ -1,0 +1,75 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "gym-lapsed-member-winback-whatsapp",
+  "title": "Lapsed member win-back",
+  "category": "Fitness coaching",
+  "iconType": "repeat",
+  "categories": ["Fitness coaching", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Win-back conversations",
+  "whatClientGets": "Members back on the floor",
+  "exampleOutcome": "Up to 20% of lapsed members back",
+  "aboutParagraphs": [
+    "The cheapest member a gym can sign is one who already signed once, and the reason they left is usually smaller than anyone assumes.",
+    "This template handles the return conversation without making it awkward. It asks what got in the way, answers the practical blockers — a changed schedule, a price tier that no longer fits, a class that moved — and offers a way back in. It never guilt-trips, never chases twice, and passes anyone with a billing dispute straight to a human instead of arguing about it."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Member\nlapsed",
+    "One\nmessage",
+    "Blocker\nasked",
+    "Option\noffered",
+    "Return\nvisit"
+  ],
+  "revenueMin": 8000,
+  "revenueMax": 28000,
+  "defaultClients": 14,
+  "maxClients": 32,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You are talking to someone who used to train at this gym and stopped. Be warm and completely unpushy.\nAnswer in the language the person writes in. Keep replies under 50 words.\nAsk once, lightly, what got in the way — schedule, price, an injury, or just life. Then answer the blocker with what actually exists: the current class times, the membership tiers and what each costs, off-peak options, and whether a pause is possible.\nNever guilt someone about stopping, never say they are wasting their potential, and never comment on their body or fitness.\nIf they say no, thank them and stop. One offer is enough.\nIf they want to come back, offer the two nearest times for a visit."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If a lapsed member did not reply, send exactly one message a few days later: say the door is open, name the one thing that has changed since they left, and leave it there. Never send a third message."
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person raises a billing dispute, an unwanted charge or a cancellation that did not go through",
+                    "messagePrompt": "Apologise once, do not argue, and say the membership team will sort it today."
+                  },
+                  {
+                    "switchingConditions": "The person says they left because of a bad experience with staff or another member",
+                    "messagePrompt": "Thank them for telling you, say the manager needs to hear this directly, and hand over."
+                  }
+                ]
+              }
+            }
+          },
+          { "messageDelays": { "update": { "enabled": true } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

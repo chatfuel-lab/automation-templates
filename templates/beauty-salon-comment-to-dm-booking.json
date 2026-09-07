@@ -1,0 +1,127 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "beauty-salon-comment-to-dm-booking",
+  "title": "Comment-to-DM bookings",
+  "category": "Beauty & aesthetics",
+  "iconType": "cursor",
+  "categories": ["Beauty & aesthetics", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Comments turned into DMs",
+  "whatClientGets": "Bookings from every post",
+  "exampleOutcome": "Up to 5x more DMs per post",
+  "aboutParagraphs": [
+    "Every salon post collects the same comment — \"price?\" — and every one of those is a booking that never happened because nobody answered it.",
+    "This template replies publicly in one line to keep the comment section moving, then opens a DM and does the actual work: the price for the service they asked about, how long it takes, and the two nearest free slots. Prices stay out of the public thread, which is where competitors read them. A second rule handles the people who just comment an emoji or \"😍\" with a friendlier opener instead of a price list."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Comment\nposted",
+    "Public\nreply",
+    "DM\nopened",
+    "Price and\nslots",
+    "Booking\nmade"
+  ],
+  "revenueMin": 9000,
+  "revenueMax": 28000,
+  "defaultClients": 15,
+  "maxClients": 35,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramPostComments",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "Just sent you a DM 💌",
+                "messagePrompt": "Reply publicly in one short, friendly sentence and say the details are in their DMs. Never state prices or slots publicly.",
+                "likeContactComment": false
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Thanks for your comment! Here are the details you asked about.",
+                "messagePrompt": "Open the DM by thanking them for their comment, then answer the question it contained. Keep it to two short paragraphs and offer the two nearest free slots when booking comes up."
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": [
+      {
+        "scope": "InstagramPostComments",
+        "name": "Price and booking comments",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["price", "prices", "cost", "how much", "book", "booking", "appointment", "info"]
+              }
+            }
+          },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "Sent you a DM with everything 💌",
+                "messagePrompt": "One short public sentence pointing at the DM. Never state a price publicly.",
+                "likeContactComment": false
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Hi! Here are the prices you asked about.",
+                "messagePrompt": "They commented asking about price or booking. Lead with the number from the knowledge base for the service in the post, then say how long the appointment takes and offer the two nearest free slots.\nAnswer in the language they commented in. Two short paragraphs, one emoji at most.\nNever invent a discount and never quote a price that is not in the knowledge base — if you do not have it, say what the range is and ask which service they mean."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "scope": "InstagramPostComments",
+        "name": "Compliments and emoji",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["😍", "🔥", "beautiful", "gorgeous", "love it", "wow"]
+              }
+            }
+          },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "UsingAI",
+                "exactTextReply": "Thank you! 💛",
+                "messagePrompt": "Thank them warmly in one short sentence. Do not pitch anything.",
+                "likeContactComment": false
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Thank you so much! Let us know if you'd like to come in 💛",
+                "messagePrompt": "They left a compliment, not a question. Thank them in one line, then ask lightly whether they would like to see what the service costs or when the next free slot is. If they say no or do not reply, leave it there."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

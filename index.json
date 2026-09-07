@@ -1,0 +1,506 @@
+{
+  "$schema": "./schema/index.schema.json",
+  "templates": [
+    {
+      "id": "auto-repair-service-booking-whatsapp",
+      "title": "Auto service booking",
+      "category": "Local services",
+      "categories": [
+        "Local services"
+      ],
+      "iconType": "chat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Garage bookings on WhatsApp",
+      "whatClientGets": "A full ramp schedule",
+      "exampleOutcome": "Up to 40% fewer phone interruptions"
+    },
+    {
+      "id": "barbershop-rebooking-whatsapp",
+      "title": "Barber rebooking nudge",
+      "category": "Beauty & aesthetics",
+      "categories": [
+        "Beauty & aesthetics",
+        "Local services"
+      ],
+      "iconType": "repeat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Rebooking on WhatsApp",
+      "whatClientGets": "A fuller chair rotation",
+      "exampleOutcome": "Up to 25% shorter return cycle"
+    },
+    {
+      "id": "beauty-salon-comment-to-dm-booking",
+      "title": "Comment-to-DM bookings",
+      "category": "Beauty & aesthetics",
+      "categories": [
+        "Beauty & aesthetics",
+        "Local services"
+      ],
+      "iconType": "cursor",
+      "author": "chatfuel-team",
+      "whatItRuns": "Comments turned into DMs",
+      "whatClientGets": "Bookings from every post",
+      "exampleOutcome": "Up to 5x more DMs per post"
+    },
+    {
+      "id": "cleaning-service-quote-requests-whatsapp",
+      "title": "Cleaning quote desk",
+      "category": "Local services",
+      "categories": [
+        "Local services"
+      ],
+      "iconType": "grow",
+      "author": "chatfuel-team",
+      "whatItRuns": "Quote requests on WhatsApp",
+      "whatClientGets": "Quotable jobs, not vague chats",
+      "exampleOutcome": "Up to 3x more quotes sent same day"
+    },
+    {
+      "id": "clinic-no-show-recovery-whatsapp",
+      "title": "No-show rescue",
+      "category": "Clinics",
+      "categories": [
+        "Clinics",
+        "Local services"
+      ],
+      "iconType": "repeat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Confirmations and win-backs",
+      "whatClientGets": "Fewer empty chairs",
+      "exampleOutcome": "Up to 40% fewer no-shows"
+    },
+    {
+      "id": "dental-clinic-after-hours-whatsapp",
+      "title": "After-hours dental desk",
+      "category": "Clinics",
+      "categories": [
+        "Clinics",
+        "Local services"
+      ],
+      "iconType": "moon",
+      "author": "chatfuel-team",
+      "whatItRuns": "After-hours patient replies",
+      "whatClientGets": "No lost evening enquiries",
+      "exampleOutcome": "Up to 30% more booked appointments"
+    },
+    {
+      "id": "dermatology-consult-triage-whatsapp",
+      "title": "Skin consult triage",
+      "category": "Clinics",
+      "categories": [
+        "Clinics",
+        "Beauty & aesthetics"
+      ],
+      "iconType": "chat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Consultation intake on WhatsApp",
+      "whatClientGets": "Sorted enquiries, not chaos",
+      "exampleOutcome": "Up to half the admin time back"
+    },
+    {
+      "id": "driving-school-lesson-booking-whatsapp",
+      "title": "Driving lesson booking",
+      "category": "Education",
+      "categories": [
+        "Education",
+        "Local services"
+      ],
+      "iconType": "repeat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Lessons, reminders, documents",
+      "whatClientGets": "Instructors who aren't waiting",
+      "exampleOutcome": "Up to 45% fewer missed lessons"
+    },
+    {
+      "id": "gym-lapsed-member-winback-whatsapp",
+      "title": "Lapsed member win-back",
+      "category": "Fitness coaching",
+      "categories": [
+        "Fitness coaching",
+        "Local services"
+      ],
+      "iconType": "repeat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Win-back conversations",
+      "whatClientGets": "Members back on the floor",
+      "exampleOutcome": "Up to 20% of lapsed members back"
+    },
+    {
+      "id": "gym-trial-pass-signups-instagram",
+      "title": "Trial pass signups",
+      "category": "Fitness coaching",
+      "categories": [
+        "Fitness coaching",
+        "Local services"
+      ],
+      "iconType": "grow",
+      "author": "chatfuel-team",
+      "whatItRuns": "Trial passes from Instagram DMs",
+      "whatClientGets": "People through the door",
+      "exampleOutcome": "Up to 3x more trials claimed"
+    },
+    {
+      "id": "home-renovation-project-intake-whatsapp",
+      "title": "Renovation intake",
+      "category": "Local services",
+      "categories": [
+        "Local services",
+        "Real estate"
+      ],
+      "iconType": "grow",
+      "author": "chatfuel-team",
+      "whatItRuns": "Project intake for builders",
+      "whatClientGets": "Site visits worth making",
+      "exampleOutcome": "Up to 50% fewer wasted site visits"
+    },
+    {
+      "id": "kids-camp-registration-ad-leads",
+      "title": "Camp registration",
+      "category": "Education",
+      "categories": [
+        "Education",
+        "Local services"
+      ],
+      "iconType": "grow",
+      "author": "chatfuel-team",
+      "whatItRuns": "Ad clicks into registrations",
+      "whatClientGets": "Places filled before term ends",
+      "exampleOutcome": "Up to 50% faster place filling"
+    },
+    {
+      "id": "language-school-enrollment-whatsapp",
+      "title": "Enrollment desk",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "iconType": "chat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Course enrolment on WhatsApp",
+      "whatClientGets": "Filled classes each intake",
+      "exampleOutcome": "Up to 35% more enrolments per intake"
+    },
+    {
+      "id": "lash-brow-studio-ad-leads",
+      "title": "Lash ad leads",
+      "category": "Beauty & aesthetics",
+      "categories": [
+        "Beauty & aesthetics",
+        "Local services"
+      ],
+      "iconType": "grow",
+      "author": "chatfuel-team",
+      "whatItRuns": "Instagram ad conversations",
+      "whatClientGets": "Qualified leads, not clicks",
+      "exampleOutcome": "Up to 40% lower cost per booking"
+    },
+    {
+      "id": "med-spa-price-list-instagram-dm",
+      "title": "Med spa price list",
+      "category": "Beauty & aesthetics",
+      "categories": [
+        "Beauty & aesthetics",
+        "Clinics"
+      ],
+      "iconType": "chat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Treatment and price questions",
+      "whatClientGets": "Straight answers, fast",
+      "exampleOutcome": "Up to 60% fewer unanswered DMs"
+    },
+    {
+      "id": "mortgage-broker-lead-intake-whatsapp",
+      "title": "Mortgage intake",
+      "category": "Real estate",
+      "categories": [
+        "Real estate"
+      ],
+      "iconType": "grow",
+      "author": "chatfuel-team",
+      "whatItRuns": "First-contact intake for brokers",
+      "whatClientGets": "Calls that start at step two",
+      "exampleOutcome": "Up to 30% more calls that convert"
+    },
+    {
+      "id": "moving-company-quotes-from-posts",
+      "title": "Moving quotes from posts",
+      "category": "Local services",
+      "categories": [
+        "Local services",
+        "Real estate"
+      ],
+      "iconType": "cursor",
+      "author": "chatfuel-team",
+      "whatItRuns": "WhatsApp chats opened from posts",
+      "whatClientGets": "Quotes while they're deciding",
+      "exampleOutcome": "Up to 45% faster first response"
+    },
+    {
+      "id": "nail-studio-story-reply-booking",
+      "title": "Story-reply bookings",
+      "category": "Beauty & aesthetics",
+      "categories": [
+        "Beauty & aesthetics",
+        "Local services"
+      ],
+      "iconType": "cursor",
+      "author": "chatfuel-team",
+      "whatItRuns": "Story replies into appointments",
+      "whatClientGets": "Last-minute gaps filled",
+      "exampleOutcome": "Up to 4x more replies converted"
+    },
+    {
+      "id": "nutritionist-consult-intake-whatsapp",
+      "title": "Nutrition intake",
+      "category": "Fitness coaching",
+      "categories": [
+        "Fitness coaching",
+        "Clinics"
+      ],
+      "iconType": "grow",
+      "author": "chatfuel-team",
+      "whatItRuns": "Consultation intake",
+      "whatClientGets": "Prepared first sessions",
+      "exampleOutcome": "Up to 40% more consults booked"
+    },
+    {
+      "id": "off-plan-development-ad-leads",
+      "title": "Off-plan ad responder",
+      "category": "Real estate",
+      "categories": [
+        "Real estate"
+      ],
+      "iconType": "cursor",
+      "author": "chatfuel-team",
+      "whatItRuns": "Click-to-WhatsApp ads for new builds",
+      "whatClientGets": "Investor leads, sorted",
+      "exampleOutcome": "Up to 3x more brochure requests"
+    },
+    {
+      "id": "online-coach-bio-link-funnel",
+      "title": "Bio-link coaching funnel",
+      "category": "Fitness coaching",
+      "categories": [
+        "Fitness coaching",
+        "Education"
+      ],
+      "iconType": "cursor",
+      "author": "chatfuel-team",
+      "whatItRuns": "ig.me links into conversations",
+      "whatClientGets": "Traffic you can attribute",
+      "exampleOutcome": "Up to 2x more intro calls booked"
+    },
+    {
+      "id": "online-course-waitlist-story-replies",
+      "title": "Course waitlist",
+      "category": "Education",
+      "categories": [
+        "Education",
+        "Fitness coaching"
+      ],
+      "iconType": "cursor",
+      "author": "chatfuel-team",
+      "whatItRuns": "Story replies into a waitlist",
+      "whatClientGets": "A list before launch day",
+      "exampleOutcome": "Up to 5x bigger launch waitlist"
+    },
+    {
+      "id": "personal-trainer-comment-to-dm",
+      "title": "PT comment-to-DM",
+      "category": "Fitness coaching",
+      "categories": [
+        "Fitness coaching"
+      ],
+      "iconType": "cursor",
+      "author": "chatfuel-team",
+      "whatItRuns": "Comment keywords into DMs",
+      "whatClientGets": "A funnel out of every reel",
+      "exampleOutcome": "Up to 8x more DMs per reel"
+    },
+    {
+      "id": "photographer-booking-instagram-dm",
+      "title": "Shoot enquiries",
+      "category": "Local services",
+      "categories": [
+        "Local services",
+        "Beauty & aesthetics"
+      ],
+      "iconType": "chat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Shoot enquiries on Instagram",
+      "whatClientGets": "Dates held, not lost",
+      "exampleOutcome": "Up to 2x more enquiries answered"
+    },
+    {
+      "id": "physiotherapy-lead-capture-ads",
+      "title": "Physio ad responder",
+      "category": "Clinics",
+      "categories": [
+        "Clinics",
+        "Fitness coaching"
+      ],
+      "iconType": "cursor",
+      "author": "chatfuel-team",
+      "whatItRuns": "Click-to-WhatsApp ad follow-up",
+      "whatClientGets": "Ad spend that converts",
+      "exampleOutcome": "Up to 2x more consults per ad"
+    },
+    {
+      "id": "property-viewing-scheduler-whatsapp",
+      "title": "Viewing scheduler",
+      "category": "Real estate",
+      "categories": [
+        "Real estate",
+        "Local services"
+      ],
+      "iconType": "chat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Viewing requests and reminders",
+      "whatClientGets": "A diary that fills itself",
+      "exampleOutcome": "Up to 35% fewer missed viewings"
+    },
+    {
+      "id": "real-estate-buyer-qualification-whatsapp",
+      "title": "Buyer qualifier",
+      "category": "Real estate",
+      "categories": [
+        "Real estate"
+      ],
+      "iconType": "grow",
+      "author": "chatfuel-team",
+      "whatItRuns": "Buyer qualification on WhatsApp",
+      "whatClientGets": "Only serious buyers in the diary",
+      "exampleOutcome": "Up to 50% less time on dead leads"
+    },
+    {
+      "id": "realtor-listing-comment-to-dm",
+      "title": "Listing comment-to-DM",
+      "category": "Real estate",
+      "categories": [
+        "Real estate"
+      ],
+      "iconType": "cursor",
+      "author": "chatfuel-team",
+      "whatItRuns": "Listing comments into DMs",
+      "whatClientGets": "Leads from every property post",
+      "exampleOutcome": "Up to 6x more listing enquiries"
+    },
+    {
+      "id": "rental-inquiry-autoresponder-instagram",
+      "title": "Rental inquiry desk",
+      "category": "Real estate",
+      "categories": [
+        "Real estate",
+        "Local services"
+      ],
+      "iconType": "chat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Rental DMs on Instagram",
+      "whatClientGets": "Tenants pre-screened",
+      "exampleOutcome": "Up to 70% fewer repeat questions"
+    },
+    {
+      "id": "restaurant-reservations-whatsapp",
+      "title": "Table reservations",
+      "category": "Local services",
+      "categories": [
+        "Local services"
+      ],
+      "iconType": "chat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Reservations and menu questions",
+      "whatClientGets": "A booked room, every service",
+      "exampleOutcome": "Up to 25% more covers booked"
+    },
+    {
+      "id": "tattoo-studio-consult-requests",
+      "title": "Tattoo consult intake",
+      "category": "Beauty & aesthetics",
+      "categories": [
+        "Beauty & aesthetics",
+        "Local services"
+      ],
+      "iconType": "grow",
+      "author": "chatfuel-team",
+      "whatItRuns": "Design enquiries on Instagram",
+      "whatClientGets": "Briefs artists can quote from",
+      "exampleOutcome": "Up to 3x fewer back-and-forth DMs"
+    },
+    {
+      "id": "therapy-practice-intake-whatsapp",
+      "title": "Therapy intake screener",
+      "category": "Clinics",
+      "categories": [
+        "Clinics",
+        "Education"
+      ],
+      "iconType": "grow",
+      "author": "chatfuel-team",
+      "whatItRuns": "First-contact intake",
+      "whatClientGets": "Matched to the right therapist",
+      "exampleOutcome": "Up to 2x more first sessions kept"
+    },
+    {
+      "id": "tutoring-center-parent-inquiries-whatsapp",
+      "title": "Parent inquiry desk",
+      "category": "Education",
+      "categories": [
+        "Education",
+        "Local services"
+      ],
+      "iconType": "chat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Parent enquiries on WhatsApp",
+      "whatClientGets": "Assessments in the diary",
+      "exampleOutcome": "Up to 2x more assessments booked"
+    },
+    {
+      "id": "veterinary-clinic-instagram-dm",
+      "title": "Vet clinic front desk",
+      "category": "Clinics",
+      "categories": [
+        "Clinics",
+        "Local services"
+      ],
+      "iconType": "chat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Instagram DMs for a vet practice",
+      "whatClientGets": "Every pet owner answered",
+      "exampleOutcome": "Up to 3x faster first reply"
+    },
+    {
+      "id": "webinar-signups-ad-comments",
+      "title": "Webinar signups",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "iconType": "cursor",
+      "author": "chatfuel-team",
+      "whatItRuns": "Ad comments into signups",
+      "whatClientGets": "Registrations from ad spend",
+      "exampleOutcome": "Up to 4x more registrations per ad"
+    },
+    {
+      "id": "yoga-studio-class-booking-whatsapp",
+      "title": "Class booking",
+      "category": "Fitness coaching",
+      "categories": [
+        "Fitness coaching",
+        "Local services"
+      ],
+      "iconType": "chat",
+      "author": "chatfuel-team",
+      "whatItRuns": "Class bookings and waitlists",
+      "whatClientGets": "Full mats, fewer emails",
+      "exampleOutcome": "Up to 30% fuller classes"
+    }
+  ],
+  "authors": [
+    {
+      "id": "chatfuel-team",
+      "name": "Chatfuel team",
+      "avatarUrl": ""
+    }
+  ]
+}

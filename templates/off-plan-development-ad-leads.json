@@ -1,0 +1,110 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "off-plan-development-ad-leads",
+  "title": "Off-plan ad responder",
+  "category": "Real estate",
+  "iconType": "cursor",
+  "categories": ["Real estate"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Click-to-WhatsApp ads for new builds",
+  "whatClientGets": "Investor leads, sorted",
+  "exampleOutcome": "Up to 3x more brochure requests",
+  "aboutParagraphs": [
+    "New-development campaigns pull two very different people into the same inbox: an investor comparing yields and a family who wants to know if the school is close.",
+    "This template answers both from the ad click. It sends the unit mix, the payment plan and the handover date from the knowledge base, then asks the one question that separates the two audiences — whether they are buying to live in or to let. A dedicated rule catches anyone whose first message is about payment plans or ROI and answers that head-on before anything else."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Ad\nclicked",
+    "Project\ndetails",
+    "Buyer type\nasked",
+    "Payment\nplan",
+    "Sales team\nhandoff"
+  ],
+  "revenueMin": 30000,
+  "revenueMax": 120000,
+  "defaultClients": 5,
+  "maxClients": 12,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppClickFromAds",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "This person clicked an ad for a new residential development and opened WhatsApp. Open by naming the development.\nAnswer in the language they write in. Keep replies under 70 words.\nYou may state from the knowledge base: available unit types and sizes, the price range, the payment plan, the expected handover date, and what is included in the finish.\nAsk early whether they are buying to live in or as an investment — the answer changes everything that follows — and which unit size they are after.\nNever forecast capital growth, rental yield or price appreciation. Never advise on mortgages, taxes or residency. If they push, say the sales team will put them in touch with the right specialist.\nWhen the basics are captured, say the sales team will send the brochure and the current availability."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "buyer_intent", "description": "Whether they are buying to live in or as an investment" },
+                  { "name": "unit_size", "description": "Which unit type or number of bedrooms they want" },
+                  { "name": "budget_range", "description": "The budget they are working to" },
+                  { "name": "purchase_timeline", "description": "When they are looking to buy" }
+                ]
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If the chat opened from the ad and went quiet, send one message after a few hours: name the development, say which unit types are still available, and offer to send the brochure. Never send a second nudge."
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person asks about mortgages, taxes, residency or legal structure",
+                    "messagePrompt": "Say a specialist from the sales team will answer that one directly."
+                  },
+                  {
+                    "switchingConditions": "The person wants to reserve a unit or asks for a contract",
+                    "messagePrompt": "Say the sales team handles reservations personally and will call them today."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": [
+      {
+        "scope": "WhatsAppClickFromAds",
+        "name": "Payment plan and yield questions",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["payment plan", "installment", "instalment", "roi", "yield", "rental", "investment", "down payment"]
+              }
+            }
+          },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "They opened the chat asking about money. Lead with the payment plan exactly as the knowledge base states it: deposit, instalment schedule, and what is due at handover.\nIf they ask about rental yield or return, say plainly that the developer does not publish projections and offer what is factual instead — the unit price, the size, and the current rents in the area only if the knowledge base contains them.\nNever produce a number the knowledge base does not have. Hand over to the sales team once the plan is explained."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

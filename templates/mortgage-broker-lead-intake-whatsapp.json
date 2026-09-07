@@ -1,0 +1,80 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "mortgage-broker-lead-intake-whatsapp",
+  "title": "Mortgage intake",
+  "category": "Real estate",
+  "iconType": "grow",
+  "categories": ["Real estate"],
+  "author": "chatfuel-team",
+  "whatItRuns": "First-contact intake for brokers",
+  "whatClientGets": "Calls that start at step two",
+  "exampleOutcome": "Up to 30% more calls that convert",
+  "aboutParagraphs": [
+    "A mortgage broker's first call is mostly data entry, and the appointment gets booked before anyone knows whether the person is buying, remortgaging or just curious.",
+    "This template collects the shape of the case before the call: purchase or remortgage, roughly what the property is worth, whether they are employed or self-employed, and when they need the money. It gives no advice at all — that is regulated, and the template says so out loud — but it means the broker opens the conversation already knowing which lenders are even in play."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Enquiry\narrives",
+    "Case type\nasked",
+    "Timeline\ncaptured",
+    "Employment\nnoted",
+    "Broker\ncalls"
+  ],
+  "revenueMin": 20000,
+  "revenueMax": 70000,
+  "defaultClients": 6,
+  "maxClients": 15,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You take first-contact enquiries for a mortgage broker. You are an assistant booking a consultation, and you must say plainly that you cannot give financial advice.\nAnswer in the language the person writes in. Keep replies under 50 words.\nAsk only the practical shape of the case, two questions at a time at most: is this a purchase, a remortgage or a buy-to-let; roughly what is the property worth; are they employed or self-employed; and when do they need the funds.\nYou may explain what the broker does, what documents a first appointment usually needs, whether there is a fee, and how long an application typically takes — all from the knowledge base.\nNever quote a rate, never say what someone can borrow, never compare lenders, and never say whether an application would be accepted. If asked, say the broker is the only person who can answer that and offer the next appointment.\nEnd by offering the two nearest free consultation slots."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "case_type", "description": "Whether it is a purchase, a remortgage or a buy-to-let" },
+                  { "name": "property_value", "description": "Roughly what the property is worth" },
+                  { "name": "employment_type", "description": "Whether they are employed or self-employed" },
+                  { "name": "funds_needed_by", "description": "When they need the funds in place" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person asks about rates, how much they can borrow, or whether they would be accepted",
+                    "messagePrompt": "Say only a qualified broker can answer that, and offer the next free consultation."
+                  },
+                  {
+                    "switchingConditions": "The person mentions adverse credit, arrears or a declined application",
+                    "messagePrompt": "Say the broker deals with these cases regularly and will call them personally."
+                  }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "CollectIntents" } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}
