@@ -5,6 +5,7 @@
   "category": "Professional services",
   "iconType": "grow",
   "categories": ["Professional services"],
+  "rating": 5,
   "author": "joonas-rotko",
   "whatItRuns": "Demo requests from paid ads",
   "whatClientGets": "Only qualified demos booked",

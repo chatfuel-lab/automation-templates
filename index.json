@@ -9,6 +9,7 @@
         "Local services",
         "Professional services"
       ],
+      "rating": 5,
       "iconType": "chat",
       "author": "alejavi-rivera",
       "whatItRuns": "Preguntas frecuentes en Instagram",
@@ -22,6 +23,7 @@
       "categories": [
         "E-commerce"
       ],
+      "rating": 5,
       "iconType": "chat",
       "author": "adrian-aramayo",
       "whatItRuns": "Consultas de pedidos y envíos",
@@ -48,6 +50,7 @@
       "categories": [
         "Professional services"
       ],
+      "rating": 5,
       "iconType": "grow",
       "author": "joonas-rotko",
       "whatItRuns": "Demo requests from paid ads",
@@ -90,6 +93,7 @@
         "Coaching & creators",
         "Education"
       ],
+      "rating": 5,
       "iconType": "cursor",
       "author": "caroline-manchini",
       "whatItRuns": "Comentários que viram DM",
@@ -173,6 +177,7 @@
         "Fitness coaching",
         "Coaching & creators"
       ],
+      "rating": 5,
       "iconType": "cursor",
       "author": "joren-wouters",
       "whatItRuns": "Ebook opt-ins from comments",
@@ -229,6 +234,7 @@
         "Education",
         "Coaching & creators"
       ],
+      "rating": 5,
       "iconType": "chat",
       "author": "roxana-falasco",
       "whatItRuns": "Dudas sobre cursos y precios",
@@ -477,6 +483,7 @@
         "Professional services",
         "Local services"
       ],
+      "rating": 5,
       "iconType": "grow",
       "author": "oskr-leon",
       "whatItRuns": "Primer contacto de clientes nuevos",

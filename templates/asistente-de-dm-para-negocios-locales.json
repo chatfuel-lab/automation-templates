@@ -5,6 +5,7 @@
   "category": "Local services",
   "iconType": "chat",
   "categories": ["Local services", "Professional services"],
+  "rating": 5,
   "author": "alejavi-rivera",
   "whatItRuns": "Preguntas frecuentes en Instagram",
   "whatClientGets": "Respuestas en segundos",
