@@ -1,0 +1,88 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "recepcion-ia-empresas-de-servicios-whatsapp",
+  "title": "Recepción con IA para servicios",
+  "category": "Professional services",
+  "iconType": "grow",
+  "categories": ["Professional services", "Local services"],
+  "author": "oskr-leon",
+  "whatItRuns": "Primer contacto de clientes nuevos",
+  "whatClientGets": "Agenda llena sin llamadas",
+  "exampleOutcome": "Hasta 40% más solicitudes atendidas",
+  "aboutParagraphs": [
+    "En una empresa de servicios el primer mensaje casi nunca llega en horario de oficina, y quien responde mañana ya perdió contra quien respondió anoche.",
+    "Esta plantilla se ocupa del primer contacto completo: entiende qué necesita la persona, explica cómo trabaja la empresa y de qué depende el presupuesto, y reúne los tres datos sin los cuales nadie puede preparar una propuesta — qué servicio, para cuándo y con qué orden de magnitud. Deja la solicitud lista para que una persona la retome y proponga una reunión. No cierra precios ni firma nada: registra la intención y avisa al equipo."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Mensaje\nrecibido",
+    "Necesidad\ndetectada",
+    "Alcance\nexplicado",
+    "Cita\npropuesta",
+    "Equipo\navisado"
+  ],
+  "revenueMin": 15000,
+  "revenueMax": 45000,
+  "defaultClients": 10,
+  "maxClients": 24,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "Atiendes el primer contacto de una empresa de servicios. Responde en el idioma de la persona, en mensajes de menos de 70 palabras.\nEmpieza por entender qué necesita y para cuándo. Explica con la base de conocimiento qué incluye el servicio, cómo es el proceso y de qué depende el precio.\nDa rangos, nunca una cifra cerrada, y di siempre qué hace que el presupuesto suba o baje. No prometas plazos de entrega ni resultados.\nCuando tengas claro el servicio, el plazo y el orden de magnitud del presupuesto, propón una llamada corta y pregunta qué días y franjas horarias le vienen bien.\nSi la persona pide asesoría legal, fiscal o financiera concreta, no la des: di que eso lo ve el equipo en la llamada."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "Si la conversación se quedó a medias antes de acordar una llamada, envía un único mensaje al día siguiente: resume en una línea lo que la persona pidió y pregunta qué día le viene bien hablar. No insistas después."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "servicio_solicitado", "description": "Qué servicio necesita la persona" },
+                  { "name": "plazo", "description": "Para cuándo lo necesita" },
+                  { "name": "presupuesto_estimado", "description": "Orden de magnitud del presupuesto que maneja, si lo comparte" },
+                  { "name": "disponibilidad", "description": "Días y franjas horarias en las que puede hablar" }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "CollectIntents" } } },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "La persona pide una propuesta formal, un contrato o condiciones de pago concretas",
+                    "messagePrompt": "Di que una persona del equipo prepara la propuesta y se pondrá en contacto. No adelantes cifras ni condiciones."
+                  },
+                  {
+                    "switchingConditions": "La persona es un cliente actual con una incidencia o una queja",
+                    "messagePrompt": "Di en una línea que el caso pasa al equipo ahora mismo y no intentes resolverlo."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

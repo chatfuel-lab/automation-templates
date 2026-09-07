@@ -1,0 +1,117 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "b2b-demo-requests-from-ads-whatsapp",
+  "title": "B2B demo request qualifier",
+  "category": "Professional services",
+  "iconType": "grow",
+  "categories": ["Professional services"],
+  "author": "joonas-rotko",
+  "whatItRuns": "Demo requests from paid ads",
+  "whatClientGets": "Only qualified demos booked",
+  "exampleOutcome": "Up to 2x more demos from one budget",
+  "aboutParagraphs": [
+    "A click-to-WhatsApp ad for a B2B product delivers two very different people through the same door: a buyer with a budget and a student writing a comparison post. A calendar link treats them identically, and the sales team pays for that in no-shows.",
+    "This template qualifies the chat before anything reaches the calendar. It picks up the offer the ad made, asks what the team is trying to solve, how many people would use the product and what they run today, then proposes a demo only when the answers add up. Everything it learns is captured as structured fields, so the person taking the call opens the conversation already knowing the stack and the timeline. Security reviews, procurement and anything enterprise go straight to a human."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Ad\nclicked",
+    "Chat\nopened",
+    "Fit\nchecked",
+    "Demo\nproposed",
+    "Team\nnotified"
+  ],
+  "revenueMin": 20000,
+  "revenueMax": 60000,
+  "defaultClients": 8,
+  "maxClients": 18,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppClickFromAds",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "This person clicked a B2B software ad and opened a WhatsApp chat. Open by acknowledging what the ad offered, then qualify.\nReply in the language they write in. Keep every message under 60 words and ask one question at a time.\nFind out what they are trying to solve, how many people would use the product, and what they use today. Explain what the product does and what it integrates with, using the knowledge base only.\nGive pricing as the published tiers or a range, never a bespoke quote, and never commit to a roadmap item or a delivery date.\nWhen the answers show a real fit, propose a demo and ask which days and time zone work. If it is clearly a student, a job seeker or a competitor, be polite, point at the public documentation and do not push a demo."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If the chat opened from the ad and went quiet before a demo was agreed, send one message the next working day: restate in a line what they said they were trying to solve and ask which day suits a short call. Never send a second one."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "company", "description": "Company they work for" },
+                  { "name": "use_case", "description": "The problem they are trying to solve with the product" },
+                  { "name": "team_size", "description": "How many people would actually use the product" },
+                  { "name": "current_stack", "description": "What they use today and what it has to integrate with" },
+                  { "name": "timeline", "description": "When they want to have something running" },
+                  { "name": "availability", "description": "Days and time zone that work for a demo call" }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "CollectIntents" } } },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person asks about custom pricing, a contract, procurement or an enterprise agreement",
+                    "messagePrompt": "Say that someone from the team handles commercial terms and will reply shortly. Do not quote numbers or terms."
+                  },
+                  {
+                    "switchingConditions": "The person asks about security, data residency, compliance or a vendor review",
+                    "messagePrompt": "Say the team answers security questionnaires directly and will pick this up. Do not answer any of it yourself."
+                  },
+                  {
+                    "switchingConditions": "The person is an existing customer with a problem or a complaint",
+                    "messagePrompt": "Say in one line that this goes to the team now, and do not attempt to troubleshoot."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": [
+      {
+        "scope": "WhatsAppClickFromAds",
+        "name": "Pricing questions from ads",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["pricing", "price", "how much", "cost", "plans", "free trial", "trial"]
+              }
+            }
+          },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "This person opened the chat from an ad and led with pricing. Give the published tiers first, from the knowledge base, with no preamble.\nThen say in one sentence what decides which tier they land on, and whether a trial exists and how long it runs.\nDo not invent a discount, a custom plan or an annual deal. If they need something outside the published tiers, say the team handles that and ask for the company name and team size so the right person can pick it up."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

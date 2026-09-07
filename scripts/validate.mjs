@@ -16,6 +16,9 @@ const CATEGORIES = [
   'Local services',
   'Fitness coaching',
   'Education',
+  'E-commerce',
+  'Coaching & creators',
+  'Professional services',
 ];
 
 const ICON_TYPES = ['cursor', 'moon', 'repeat', 'chat', 'grow'];

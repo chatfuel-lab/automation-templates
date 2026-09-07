@@ -1,0 +1,13 @@
+{
+  "$schema": "../schema/author.schema.json",
+  "id": "oskr-leon",
+  "name": "Oskr León",
+  "avatarUrl": "assets/authors/oskr-leon.jpg",
+  "aboutParagraphs": [
+    "Emprendedor en serie convertido en estratega de IA y automatización, con más de 20 años de experiencia práctica en negocios. Oskr ayuda a fundadores y marcas a poner la IA y la estrategia digital a trabajar: herramientas reales, resultados reales, sin humo.",
+    "En este catálogo, Oskr firma la plantilla Recepción con IA para servicios, que atiende el primer contacto de cada cliente nuevo y lo lleva hasta una cita."
+  ],
+  "socialLinks": [
+    "https://www.youtube.com/@OskrLeonr"
+  ]
+}

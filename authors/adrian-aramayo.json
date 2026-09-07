@@ -1,0 +1,15 @@
+{
+  "$schema": "../schema/author.schema.json",
+  "id": "adrian-aramayo",
+  "name": "Adrian Aramayo",
+  "avatarUrl": "assets/authors/adrian-aramayo.jpg",
+  "aboutParagraphs": [
+    "Especialista en e-commerce y negocio digital radicado en Bolivia, ayuda a emprendedores hispanohablantes a hacer crecer sus negocios online. Adrian explica tendencias de tecnología, finanzas y e-commerce a una audiencia digital que crece rápido en toda LATAM.",
+    "En este catálogo, Adrian firma la plantilla Atención de pedidos por WhatsApp, que responde las consultas sobre pedidos y envíos que llegan al chat de la tienda."
+  ],
+  "socialLinks": [
+    "https://www.tiktok.com/@adrian.aramayo",
+    "https://www.instagram.com/adrian_aramayo/",
+    "https://www.youtube.com/@adrian.aramayo"
+  ]
+}

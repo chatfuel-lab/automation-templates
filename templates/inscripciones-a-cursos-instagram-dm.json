@@ -1,0 +1,87 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "inscripciones-a-cursos-instagram-dm",
+  "title": "Inscripciones a cursos por DM",
+  "category": "Education",
+  "iconType": "chat",
+  "categories": ["Education", "Coaching & creators"],
+  "author": "roxana-falasco",
+  "whatItRuns": "Dudas sobre cursos y precios",
+  "whatClientGets": "Más alumnos inscritos",
+  "exampleOutcome": "Hasta 2x más inscripciones por lanzamiento",
+  "aboutParagraphs": [
+    "Durante un lanzamiento la DM se convierte en el cuello de botella: las mismas cinco preguntas — qué incluye, cuánto dura, cuánto cuesta, si hay certificado, si queda grabado — llegan cientos de veces y la inscripción se cae en el silencio entre una y otra.",
+    "Esta plantilla contesta esas preguntas con el temario real del curso, distingue entre programas cuando hay varios y guía a la persona hasta el paso de pago sin prometer nada que no esté en el material. Recoge el correo y el curso que interesa, para que quien no se inscriba hoy siga siendo un contacto y no un mensaje perdido. Todo lo que toca facturación o un pago ya hecho pasa a una persona del equipo."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "DM\nrecibido",
+    "Curso\nidentificado",
+    "Dudas\nresueltas",
+    "Plaza\nreservada",
+    "Pago\nenviado"
+  ],
+  "revenueMin": 8000,
+  "revenueMax": 24000,
+  "defaultClients": 12,
+  "maxClients": 28,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "Atiendes las DM de una creadora de formación online. Responde en el idioma de la persona, en dos párrafos cortos como máximo y con un emoji como mucho.\nSi hay varios programas, pregunta primero cuál le interesa antes de dar precios.\nResponde con el temario, la duración, el formato, el precio y las fechas tal como están en la base de conocimiento. Si hay certificado o acceso a las grabaciones, dilo con las mismas palabras del material.\nNunca inventes un descuento, una beca, una fecha límite ni una promesa de resultado, y nunca digas que quedan pocas plazas si no lo sabes.\nCuando la persona esté decidida, envíale el enlace de inscripción que figura en la base de conocimiento y explica en una línea qué pasa después de pagar."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "Si la persona preguntó por un curso y no volvió a escribir, envía un único mensaje al día siguiente: recuerda el curso concreto por el que preguntó y ofrece resolver la duda que quedó abierta. Nada de urgencia inventada ni de segundo recordatorio."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "curso_de_interes", "description": "Programa o curso por el que pregunta" },
+                  { "name": "email", "description": "Correo para enviarle la información y el enlace de inscripción" },
+                  { "name": "punto_de_partida", "description": "Nivel o situación desde la que parte, para recomendar el programa adecuado" }
+                ]
+              }
+            }
+          },
+          { "messageDelays": { "update": { "enabled": true } } },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "La persona dice que ya pagó y tiene un problema con el acceso, la factura o el cobro",
+                    "messagePrompt": "Di que una persona del equipo revisa el pago y responde en breve. No pidas datos bancarios ni de tarjeta."
+                  },
+                  {
+                    "switchingConditions": "La persona pide una colaboración, una entrevista o algo de prensa",
+                    "messagePrompt": "Agradece el mensaje en una línea y di que lo pasa al equipo."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}
