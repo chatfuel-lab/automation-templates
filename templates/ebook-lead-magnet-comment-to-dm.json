@@ -5,6 +5,7 @@
   "category": "Fitness coaching",
   "iconType": "cursor",
   "categories": ["Fitness coaching", "Coaching & creators"],
+  "rating": 5,
   "author": "joren-wouters",
   "whatItRuns": "Ebook opt-ins from comments",
   "whatClientGets": "An email list that fills itself",

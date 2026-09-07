@@ -572,6 +572,9 @@ if (index) {
         fail('index.json', `${template.id}.${field} does not match templates/${template.id}.json`);
       }
     }
+    if (JSON.stringify(entry.rating) !== JSON.stringify(template.rating)) {
+      fail('index.json', `${template.id}.rating does not match templates/${template.id}.json`);
+    }
     indexed.delete(template.id);
   }
   for (const id of indexed.keys()) {
