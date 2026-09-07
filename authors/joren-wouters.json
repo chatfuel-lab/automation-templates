@@ -2,7 +2,7 @@
   "$schema": "../schema/author.schema.json",
   "id": "joren-wouters",
   "name": "Joren Wouters",
-  "avatarUrl": "",
+  "avatarUrl": "assets/authors/joren-wouters.jpg",
   "aboutParagraphs": [
     "I help companies make more money by creating chatbots for them. With 6+ years of experience with chatbots, I have been featured by the world’s biggest chatbot platforms, including Chatfuel, Manychat, Botpress and Chatbot.com (to name a few).",
     "I’m here to help you create powerful chat funnels that generate leads, boost revenue, and cut down on costs.",
