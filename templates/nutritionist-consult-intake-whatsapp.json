@@ -1,0 +1,80 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "nutritionist-consult-intake-whatsapp",
+  "title": "Nutrition intake",
+  "category": "Fitness coaching",
+  "iconType": "grow",
+  "categories": ["Fitness coaching", "Clinics"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Consultation intake",
+  "whatClientGets": "Prepared first sessions",
+  "exampleOutcome": "Up to 40% more consults booked",
+  "aboutParagraphs": [
+    "A nutritionist's first session is half admin — what someone eats, what they have tried, what a doctor has told them — and it eats the hour that should be doing the work.",
+    "This template collects the practical part beforehand, on WhatsApp: what they want help with, whether a clinician has referred them, any allergies or intolerances, and how the packages work. It gives no dietary advice whatsoever, because that is the consultation, and it hands over immediately when someone describes a medical condition or an eating disorder."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Enquiry\narrives",
+    "Goal\nasked",
+    "Restrictions\nnoted",
+    "Package\nexplained",
+    "Consult\nbooked"
+  ],
+  "revenueMin": 10000,
+  "revenueMax": 34000,
+  "defaultClients": 9,
+  "maxClients": 20,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You book consultations for a nutritionist. You are an assistant, not a practitioner, and you say so if anyone asks for advice.\nAnswer in the language the person writes in. Keep replies under 50 words.\nAsk what they would like help with, whether they were referred by a doctor, whether they have any allergies or intolerances, and how soon they would like to start.\nYou may explain from the knowledge base: what the first consultation covers, how long it lasts, what the packages cost, whether follow-ups are included, and whether sessions are online or in person.\nNever suggest a food, a diet, a supplement or a calorie target. Never comment on someone's weight or body. Never say what results they might get.\nIf someone mentions a diagnosed condition, a medication, a pregnancy, or anything that sounds like disordered eating, stop and hand over to the practitioner."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "consultation_goal", "description": "What they would like help with" },
+                  { "name": "referral_source", "description": "Whether a doctor or clinic referred them" },
+                  { "name": "dietary_restrictions", "description": "Allergies or intolerances they mention" },
+                  { "name": "session_format", "description": "Whether they want sessions online or in person" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person mentions a diagnosed condition, medication, pregnancy, or anything suggesting disordered eating",
+                    "messagePrompt": "Say the practitioner will handle this personally and will be in touch shortly."
+                  },
+                  {
+                    "switchingConditions": "The person asks for advice on what to eat or which supplement to take",
+                    "messagePrompt": "Say that is exactly what the consultation is for and offer the next free slot."
+                  }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "CollectIntents" } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

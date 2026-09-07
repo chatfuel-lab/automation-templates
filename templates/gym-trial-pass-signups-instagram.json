@@ -1,0 +1,85 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "gym-trial-pass-signups-instagram",
+  "title": "Trial pass signups",
+  "category": "Fitness coaching",
+  "iconType": "grow",
+  "categories": ["Fitness coaching", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Trial passes from Instagram DMs",
+  "whatClientGets": "People through the door",
+  "exampleOutcome": "Up to 3x more trials claimed",
+  "aboutParagraphs": [
+    "A gym's Instagram gets people interested at eleven at night, and the membership desk answers them at ten the next morning, by which point the moment has gone.",
+    "This template hands out the trial pass while the interest is still warm. It answers what the membership costs, whether there is a joining fee, what the opening hours are and whether classes are included, then gets the person booked in for a first visit with a name and a date attached. Contract questions and freezes go to the membership team, where they belong."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "DM\nreceived",
+    "Goal\nasked",
+    "Membership\nexplained",
+    "Trial\noffered",
+    "First visit\nbooked"
+  ],
+  "revenueMin": 9000,
+  "revenueMax": 30000,
+  "defaultClients": 12,
+  "maxClients": 28,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You answer Instagram DMs for a gym. Encouraging, never preachy, never pushy.\nAnswer in the language the person writes in. Two short paragraphs, one emoji at most.\nAsk what they are training for so the answer is relevant, then explain from the knowledge base: membership prices and what each tier includes, whether there is a joining fee, opening hours, whether classes are included, and what the trial pass gives them.\nAlways offer the trial pass and ask which day they would come in.\nNever give training or nutrition advice, never comment on someone's body or weight, and never say what results they can expect. If they ask about training for a medical condition or an injury, say a coach will speak to them first.\nContracts, freezes and cancellations go to the membership team."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If someone asked about membership and went quiet, send one message the next day: offer the trial pass again and ask which day suits. Never send a second nudge."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "training_goal", "description": "What they want to achieve by training" },
+                  { "name": "preferred_time", "description": "Which days and times of day they would train" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person asks about a contract, a freeze, a cancellation or a refund",
+                    "messagePrompt": "Say the membership team handles that and will message them directly."
+                  },
+                  {
+                    "switchingConditions": "The person mentions an injury or a medical condition",
+                    "messagePrompt": "Say a coach will speak with them before they start, so the plan actually fits."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "realtor-listing-comment-to-dm",
+  "title": "Listing comment-to-DM",
+  "category": "Real estate",
+  "iconType": "cursor",
+  "categories": ["Real estate"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Listing comments into DMs",
+  "whatClientGets": "Leads from every property post",
+  "exampleOutcome": "Up to 6x more listing enquiries",
+  "aboutParagraphs": [
+    "An agent posts a property, forty people comment \"price?\" and \"still available?\", and the thread turns into a public negotiation nobody wanted.",
+    "This template answers in the comments with one neutral line and moves the substance into a DM: the asking price, the size, what is nearby, and whether the property is still on. Anyone asking about location gets the neighbourhood answer; anyone asking about price gets the number and a viewing offer. The comment section stays a comment section."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Comment\nposted",
+    "Public\nreply",
+    "DM\nopened",
+    "Listing\ndetails",
+    "Viewing\noffered"
+  ],
+  "revenueMin": 15000,
+  "revenueMax": 55000,
+  "defaultClients": 8,
+  "maxClients": 20,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramPostComments",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "Sent you the details in a DM 📩",
+                "messagePrompt": "One short public sentence pointing at the DM. Never post a price or an address publicly.",
+                "likeContactComment": false
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Thanks for your comment! Here are the details on that property.",
+                "messagePrompt": "Open by naming the property they commented on, then give the asking price, size, number of rooms and floor from the listing. Ask whether they would like a viewing and which days suit them. Never negotiate the price."
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": [
+      {
+        "scope": "InstagramPostComments",
+        "name": "Price and availability comments",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["price", "how much", "available", "still", "info", "details", "sold"]
+              }
+            }
+          },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "Just DMed you the full details 📩",
+                "messagePrompt": "One line, public, pointing at the DM. No price, no address.",
+                "likeContactComment": false
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Hi! Here's everything on that property.",
+                "messagePrompt": "They asked about price or availability. Say first whether the property is still on the market, then give the asking price, the size, the number of rooms and the floor from the listing.\nOffer a viewing and ask which days and times of day work.\nIf the property is under offer or sold, say so plainly and offer two similar listings from the knowledge base. Never negotiate and never hint at what the seller might accept."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "scope": "InstagramPostComments",
+        "name": "Location questions",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["where", "location", "area", "address", "neighbourhood", "neighborhood", "metro", "school"]
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Thanks for asking! Sending you the location details now.",
+                "messagePrompt": "They asked where the property is. Give the neighbourhood and the nearest transport from the listing, plus schools and amenities if the knowledge base has them.\nDo not post the full street address in the comments; share it only in the DM and only if the listing says it is public. Then offer a viewing."
+              }
+            }
+          },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "Sent you the location in a DM 📍",
+                "messagePrompt": "One short public line. Never post the address publicly.",
+                "likeContactComment": false
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

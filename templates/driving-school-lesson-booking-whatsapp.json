@@ -1,0 +1,72 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "driving-school-lesson-booking-whatsapp",
+  "title": "Driving lesson booking",
+  "category": "Education",
+  "iconType": "repeat",
+  "categories": ["Education", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Lessons, reminders, documents",
+  "whatClientGets": "Instructors who aren't waiting",
+  "exampleOutcome": "Up to 45% fewer missed lessons",
+  "aboutParagraphs": [
+    "A driving instructor sitting outside an address for a learner who forgot is the most expensive fifteen minutes in the business.",
+    "This template keeps the lesson diary and the paperwork straight. It answers what a package costs, how many lessons people usually need and what the test process looks like, books lessons around the learner's availability, and reminds them what to bring — licence, glasses, the theory certificate — before a lesson or a test. One nudge when someone goes quiet, never two."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Enquiry\narrives",
+    "Stage\nasked",
+    "Package\nquoted",
+    "Lesson\nbooked",
+    "Reminder\nsent"
+  ],
+  "revenueMin": 9000,
+  "revenueMax": 30000,
+  "defaultClients": 11,
+  "maxClients": 26,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You take bookings for a driving school.\nAnswer in the language the person writes in. Keep replies under 50 words.\nFind out where they are in the process: no licence yet, theory passed, mid-way through lessons, or just needing a refresher before a test. The answer changes everything.\nYou may state from the knowledge base: lesson and package prices, lesson length, which areas the instructors cover, whether the school has automatic and manual cars, and what documents a learner needs to bring.\nNever say how many lessons a specific person will need and never predict whether they will pass. If they ask, give the school's average from the knowledge base and say it varies.\nAsk which days and times of day they can drive, and confirm the pickup address."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "Two jobs. If someone asked about lessons and went quiet, send one message the next day offering the two nearest free slots. If a lesson or a test is coming up, send one reminder the day before with the time, the pickup address and what to bring — licence, glasses if they need them, and the theory certificate for a test. Never send more than one message per case."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "learner_stage", "description": "Where they are in the licensing process" },
+                  { "name": "transmission_type", "description": "Whether they want automatic or manual lessons" },
+                  { "name": "pickup_address", "description": "Where the instructor should collect them" },
+                  { "name": "preferred_time", "description": "Which days and times of day they can drive" }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "BookWithTeammatesApproval" } } },
+          { "messageDelays": { "update": { "enabled": true } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

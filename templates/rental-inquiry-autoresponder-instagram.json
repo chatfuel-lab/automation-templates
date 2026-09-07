@@ -1,0 +1,79 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "rental-inquiry-autoresponder-instagram",
+  "title": "Rental inquiry desk",
+  "category": "Real estate",
+  "iconType": "chat",
+  "categories": ["Real estate", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Rental DMs on Instagram",
+  "whatClientGets": "Tenants pre-screened",
+  "exampleOutcome": "Up to 70% fewer repeat questions",
+  "aboutParagraphs": [
+    "A listed flat generates forty identical Instagram DMs in a day: is it still available, are pets allowed, what is the deposit, can I move in on the first.",
+    "This template answers all of them from the listing data and screens at the same time. It asks move-in date, how many people and whether there are pets before anyone gets a viewing slot, so the property manager stops showing a no-pets flat to someone with two dogs. Anything about contracts, references or deposits protection goes to a human."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "DM\nreceived",
+    "Availability\nconfirmed",
+    "Terms\nexplained",
+    "Tenant\nscreened",
+    "Viewing\nbooked"
+  ],
+  "revenueMin": 12000,
+  "revenueMax": 40000,
+  "defaultClients": 10,
+  "maxClients": 24,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You answer rental enquiries for a letting agency on Instagram.\nAnswer in the language the person writes in. Two short paragraphs, one emoji at most.\nSay first whether the property is still available. Then answer from the listing: monthly rent, deposit, minimum term, what bills are included, furnished or not, pets policy, and the earliest move-in date.\nBefore offering a viewing, ask when they want to move in, how many people would live there, and whether they have pets.\nNever negotiate the rent, never promise a landlord will accept someone, and never ask about income, nationality, family status or anything else that does not belong in a first message. Referencing is the agency's job, not yours.\nIf the property has gone, say so straight away and ask whether they want to hear about similar ones."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "move_in_date", "description": "When they want to move in" },
+                  { "name": "household_size", "description": "How many people would live in the property" },
+                  { "name": "has_pets", "description": "Whether they have pets" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person asks about contracts, references, deposit protection or guarantors",
+                    "messagePrompt": "Say the lettings team handles the paperwork and will message them directly."
+                  },
+                  {
+                    "switchingConditions": "The person wants to negotiate the rent or the term",
+                    "messagePrompt": "Say that is the landlord's decision and the agent will come back on it."
+                  }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "CollectIntents" } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "auto-repair-service-booking-whatsapp",
+  "title": "Auto service booking",
+  "category": "Local services",
+  "iconType": "chat",
+  "categories": ["Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Garage bookings on WhatsApp",
+  "whatClientGets": "A full ramp schedule",
+  "exampleOutcome": "Up to 40% fewer phone interruptions",
+  "aboutParagraphs": [
+    "A garage phone rings while the mechanic is under a car, so half the bookings are made by whoever can wipe their hands fastest.",
+    "This template moves that traffic to WhatsApp and handles it properly: which make and model, what the car is doing, is it a service, an MOT or a fault, and when the customer can leave it. It gives fixed prices for the standard jobs from the price list and refuses to guess at a diagnosis, which is exactly what a good service advisor does. The workshop gets a schedule instead of interruptions."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Message\narrives",
+    "Vehicle\nidentified",
+    "Job\nclassified",
+    "Price or\nquote",
+    "Ramp\nbooked"
+  ],
+  "revenueMin": 10000,
+  "revenueMax": 34000,
+  "defaultClients": 10,
+  "maxClients": 25,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You are the service advisor for a car garage, answering WhatsApp.\nAnswer in the language the person writes in. Short and plain, no jargon.\nAlways get the make, model and year first — every price depends on it. Then find out whether this is a routine service, an inspection, a tyre or brake job, or a fault the car is showing.\nFixed-price jobs from the price list can be quoted directly. For a fault, never guess the cause and never estimate the repair cost: say it needs to go on the ramp, quote the diagnostic fee from the knowledge base, and book it in.\nAsk when they can leave the car and whether they need it back the same day.\nIf they describe brakes failing, smoke, a warning light for oil pressure or overheating, tell them not to drive it and hand over to the workshop."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "vehicle_model", "description": "The make, model and year of the car" },
+                  { "name": "job_type", "description": "Whether it is a service, an inspection or a fault" },
+                  { "name": "drop_off_date", "description": "When they can leave the car with the garage" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person describes a safety fault such as brakes, smoke, overheating or an oil warning",
+                    "messagePrompt": "Tell them not to drive the car and say the workshop is being alerted right now."
+                  },
+                  {
+                    "switchingConditions": "The person disputes an invoice or a repair that was already done",
+                    "messagePrompt": "Say the workshop manager will call them personally today."
+                  }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "BookWithTeammatesApproval" } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

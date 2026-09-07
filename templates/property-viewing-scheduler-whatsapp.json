@@ -1,0 +1,83 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "property-viewing-scheduler-whatsapp",
+  "title": "Viewing scheduler",
+  "category": "Real estate",
+  "iconType": "chat",
+  "categories": ["Real estate", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Viewing requests and reminders",
+  "whatClientGets": "A diary that fills itself",
+  "exampleOutcome": "Up to 35% fewer missed viewings",
+  "aboutParagraphs": [
+    "Viewings are lost twice: once when nobody replies to the request, and again when the buyer forgets they agreed to a Tuesday at six.",
+    "This template handles both ends. It takes the viewing request in the chat, confirms which property and which slot, and asks whether anyone else is coming so the agent knows how many people to expect. If the buyer goes quiet before confirming, it nudges once with the two nearest times. Cancellations come back as a message the agent can act on rather than an empty doorstep."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Viewing\nrequested",
+    "Property\nconfirmed",
+    "Slot\nagreed",
+    "Reminder\nsent",
+    "Viewing\nheld"
+  ],
+  "revenueMin": 18000,
+  "revenueMax": 60000,
+  "defaultClients": 8,
+  "maxClients": 18,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You arrange property viewings for an estate agency.\nAnswer in the language the person writes in. Keep it short and concrete.\nFirst establish which property they mean — the reference or the address. Then offer viewing slots and ask how many people will attend.\nYou may state what is in the listing: asking price, size, rooms, floor, service charge if listed, and what the nearest transport is. Never negotiate on price, never say what an offer should be, and never say whether the seller would accept something.\nIf they ask to bring a surveyor, a builder or a second viewing, say the agent will arrange it.\nWhen a slot is agreed, restate the property, the day and the time in one line so there is no confusion."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If someone asked about a viewing and did not confirm a time, send one message a few hours later with the two nearest available slots for that property and ask which to hold. Never send a second nudge."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "property_reference", "description": "Which property or listing reference the viewing is for" },
+                  { "name": "attendee_count", "description": "How many people will come to the viewing" },
+                  { "name": "preferred_time", "description": "Which days and times of day they can view" }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "BookWithTeammatesApproval" } } },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person wants to make an offer or negotiate the price",
+                    "messagePrompt": "Say the agent handles offers personally and will call them straight away."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "physiotherapy-lead-capture-ads",
+  "title": "Physio ad responder",
+  "category": "Clinics",
+  "iconType": "cursor",
+  "categories": ["Clinics", "Fitness coaching"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Click-to-WhatsApp ad follow-up",
+  "whatClientGets": "Ad spend that converts",
+  "exampleOutcome": "Up to 2x more consults per ad",
+  "aboutParagraphs": [
+    "A click-to-WhatsApp ad delivers a person who is ready to talk right now — and loses them if the reply takes an hour.",
+    "This template answers every chat opened from a physiotherapy ad in seconds. It picks up the offer the ad made, asks what hurts and how long it has been going on without ever diagnosing it, and pushes towards an assessment appointment. A separate rule catches the price-shoppers specifically, so the people who open the chat by typing \"how much\" get a straight answer instead of a script."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Ad\nclicked",
+    "Chat\nopens",
+    "Offer\nrestated",
+    "Problem\ncaptured",
+    "Assessment\nbooked"
+  ],
+  "revenueMin": 14000,
+  "revenueMax": 42000,
+  "defaultClients": 10,
+  "maxClients": 22,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppClickFromAds",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "This person just clicked a physiotherapy ad and opened a WhatsApp chat. Open by acknowledging what the ad offered, then get to the point.\nAnswer in the language the person writes in. Keep replies under 60 words.\nAsk what they need help with and how long it has been bothering them. Explain what a first assessment involves, how long it takes and what it costs, all from the knowledge base.\nNever diagnose, never name a condition, and never say whether something will heal or how long it will take. If they describe numbness, a fall, sudden severe pain or anything after an accident, tell them to see a doctor and hand over to the team.\nWhen they are ready, ask which days and times of day work and confirm the team will lock the slot in."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If the person opened the chat from the ad and then went quiet, send one nudge after a couple of hours: remind them what the ad offered and ask which day would suit an assessment. Never send a second nudge."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "complaint_area", "description": "Which part of the body they want treated" },
+                  { "name": "complaint_duration", "description": "How long they have had the problem" },
+                  { "name": "preferred_time", "description": "Which days and times of day they can attend" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person describes an injury from an accident, numbness, or severe sudden pain",
+                    "messagePrompt": "Say this needs a clinician and that someone from the team will reply within minutes."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": [
+      {
+        "scope": "WhatsAppClickFromAds",
+        "name": "Price questions from ads",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["price", "cost", "how much", "fee", "insurance"]
+              }
+            }
+          },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "This person opened the chat from an ad and led with a price question. Give the number first, from the knowledge base, with no preamble.\nThen say in one sentence what the first session includes and how long it lasts, mention whether the clinic can invoice their insurer, and offer the two nearest free slots.\nDo not invent a discount. If the price depends on the treatment, say the range and what decides where in it they land."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

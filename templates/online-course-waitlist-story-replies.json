@@ -1,0 +1,91 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "online-course-waitlist-story-replies",
+  "title": "Course waitlist",
+  "category": "Education",
+  "iconType": "cursor",
+  "categories": ["Education", "Fitness coaching"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Story replies into a waitlist",
+  "whatClientGets": "A list before launch day",
+  "exampleOutcome": "Up to 5x bigger launch waitlist",
+  "aboutParagraphs": [
+    "A course creator posts \"reply WAITLIST\" to their story, gets two hundred replies, and adds them to a spreadsheet for the rest of the evening.",
+    "This template does it as the replies arrive. Anyone who replies with the waitlist word is confirmed in seconds and told when doors open; anyone who replies with a question about the course gets that answered instead of a canned confirmation. The list is built while the story is still live, which is the only window that matters."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Story\nposted",
+    "Reply\nreceived",
+    "Place\nconfirmed",
+    "Doors\ndate sent",
+    "Launch\nreminder"
+  ],
+  "revenueMin": 10000,
+  "revenueMax": 45000,
+  "defaultClients": 7,
+  "maxClients": 18,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramStoryReplies",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "Someone replied to a course creator's Instagram story. Treat them as warm — they are watching the stories.\nAnswer in the language they write in. One short paragraph, one emoji at most.\nIf they asked about the course, answer from the knowledge base: what it covers, how long it runs, whether it is live or self-paced, and what it costs.\nIf they are reacting rather than asking, thank them and offer the waitlist.\nNever invent a discount, never move a deadline, and never promise a result from taking the course."
+              }
+            }
+          },
+          { "messageDelays": { "update": { "enabled": true } } }
+        ]
+      }
+    ],
+    "customAutomations": [
+      {
+        "scope": "InstagramStoryReplies",
+        "name": "Waitlist keyword",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["waitlist", "list", "me", "yes", "in", "🙋", "interested"]
+              }
+            }
+          },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "They are joining the waitlist. Confirm it in the first line — no conditions, no upsell.\nThen say exactly when doors open and what waitlist members get first, from the knowledge base.\nAsk one question only: what they most want to get out of the course. Do not push for an email if the knowledge base does not say one is needed."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "course_goal", "description": "What they most want to get out of the course" }
+                ]
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "Send one message when doors are about to open: remind them they are on the waitlist, say when enrolment closes, and give the link from the knowledge base. Never send a second message."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

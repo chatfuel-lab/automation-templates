@@ -1,0 +1,72 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "moving-company-quotes-from-posts",
+  "title": "Moving quotes from posts",
+  "category": "Local services",
+  "iconType": "cursor",
+  "categories": ["Local services", "Real estate"],
+  "author": "chatfuel-team",
+  "whatItRuns": "WhatsApp chats opened from posts",
+  "whatClientGets": "Quotes while they're deciding",
+  "exampleOutcome": "Up to 45% faster first response",
+  "aboutParagraphs": [
+    "Someone moving house asks three companies on the same evening and goes with whoever answers first with a real number.",
+    "This template picks up every WhatsApp chat opened from a post or a profile link and gets to that number fast: where from, where to, how many rooms, which floor, is there a lift, and when. It quotes the published rates where the job fits them and books the survey where it does not. The point is not to be clever — it is to be the one that replied while they were still deciding."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Post\nclicked",
+    "Route\nasked",
+    "Volume\nsized",
+    "Access\nchecked",
+    "Quote or\nsurvey"
+  ],
+  "revenueMin": 11000,
+  "revenueMax": 36000,
+  "defaultClients": 9,
+  "maxClients": 22,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppClickFromPosts",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "This chat was opened from one of a moving company's posts. Assume the person is comparing quotes right now and is short of patience.\nAnswer in the language they write in. Keep replies under 50 words.\nAsk in this order: where they are moving from and to, how many rooms, which floor each address is on and whether there is a lift, whether they need packing, and the date.\nQuote from the rate card in the knowledge base when the job fits it. When it does not — a long-distance move, a piano, a storage period — say a surveyor needs to look and offer a video survey slot.\nNever guarantee a price without knowing the floors and the lift, and never promise a date the knowledge base does not show as free."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "move_from", "description": "The address or area they are moving from" },
+                  { "name": "move_to", "description": "The address or area they are moving to" },
+                  { "name": "property_size", "description": "How many rooms are being moved" },
+                  { "name": "access_notes", "description": "Which floors are involved and whether there is a lift" },
+                  { "name": "move_date", "description": "The date of the move" }
+                ]
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If the chat went quiet before the quote was complete, send one message within a couple of hours asking only the detail still missing. Moving decisions are made fast — do not wait a day, and never send a second nudge."
+              }
+            }
+          },
+          { "messageDelays": { "update": { "enabled": true } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

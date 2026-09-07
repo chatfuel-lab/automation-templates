@@ -1,0 +1,70 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "barbershop-rebooking-whatsapp",
+  "title": "Barber rebooking nudge",
+  "category": "Beauty & aesthetics",
+  "iconType": "repeat",
+  "categories": ["Beauty & aesthetics", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Rebooking on WhatsApp",
+  "whatClientGets": "A fuller chair rotation",
+  "exampleOutcome": "Up to 25% shorter return cycle",
+  "aboutParagraphs": [
+    "A barbershop lives on the gap between visits, and the gap stretches every time a regular means to book and forgets.",
+    "This template keeps the shop's WhatsApp answering all day: which barber has what free, what a cut and beard trim costs, whether walk-ins are moving. When someone asks about a slot and then drifts off, it sends exactly one nudge with the two nearest times rather than a marketing blast. Regulars book in three messages and nobody gets spammed."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Message\nreceived",
+    "Barber\nchosen",
+    "Slots\noffered",
+    "One\nnudge",
+    "Chair\nbooked"
+  ],
+  "revenueMin": 6000,
+  "revenueMax": 20000,
+  "defaultClients": 20,
+  "maxClients": 45,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You take bookings for a barbershop. Friendly, fast, no fuss.\nAnswer in the language the person writes in. Two lines is usually enough.\nYou can answer: prices for cuts, beard trims, skin fades and any other service in the knowledge base, how long each takes, opening hours, and whether walk-ins are being taken today.\nAsk which barber they want if the shop has more than one — regulars almost always have a preference — and which days and times of day suit them, then offer the two nearest free slots.\nNever quote a price that is not in the knowledge base and never promise a specific barber will be free without checking."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If someone asked about a slot and then stopped replying, send one message a few hours later: offer the two nearest free times with their usual barber and ask which to hold. Never send a second nudge."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "preferred_barber", "description": "Which barber they want to see" },
+                  { "name": "service_wanted", "description": "Which service they are booking" }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "BookWithTeammatesReview" } } },
+          { "messageDelays": { "update": { "enabled": true } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

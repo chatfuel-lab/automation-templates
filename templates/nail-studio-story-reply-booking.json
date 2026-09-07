@@ -1,0 +1,81 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "nail-studio-story-reply-booking",
+  "title": "Story-reply bookings",
+  "category": "Beauty & aesthetics",
+  "iconType": "cursor",
+  "categories": ["Beauty & aesthetics", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Story replies into appointments",
+  "whatClientGets": "Last-minute gaps filled",
+  "exampleOutcome": "Up to 4x more replies converted",
+  "aboutParagraphs": [
+    "A nail studio posts \"two slots free tomorrow\" to its story, gets thirty replies saying \"me\", and answers four of them before the day is over.",
+    "This template answers all thirty in seconds. Anyone who replies to a story with a claim word gets the slot details and a question about which time they want; anyone who replies with a question about a design or a price gets that answered instead. The gap between posting a free slot and filling it stops being a function of who happens to be holding the phone."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Story\nposted",
+    "Reply\nreceived",
+    "Slot\noffered",
+    "Time\nconfirmed",
+    "Gap\nfilled"
+  ],
+  "revenueMin": 7000,
+  "revenueMax": 22000,
+  "defaultClients": 18,
+  "maxClients": 40,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramStoryReplies",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "Someone replied to a nail studio's Instagram story. Treat it as a warm lead who is already looking at the work.\nAnswer in the language they wrote in. One short paragraph, one emoji at most.\nIf they are reacting to a design, say what the service is called and what it costs from the knowledge base, then offer the two nearest free slots.\nIf they are claiming a slot from the story, confirm what is still free and ask which time they want.\nNever promise a design you cannot see in the knowledge base and never quote a price for something custom — say it depends and offer to check with the artist."
+              }
+            }
+          },
+          { "messageDelays": { "update": { "enabled": true } } }
+        ]
+      }
+    ],
+    "customAutomations": [
+      {
+        "scope": "InstagramStoryReplies",
+        "name": "Claiming a free slot",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["me", "yes", "🙋", "i want", "book me", "free", "available"]
+              }
+            }
+          },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "They are claiming a slot advertised in the story. Move fast and keep it to two lines.\nConfirm which times are still free, ask which one they want, and ask which service so the right length is blocked out.\nIf everything in the story has gone, say so straight away and offer the next two free slots instead — do not leave them waiting."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If they claimed a slot and then went quiet without picking a time, send one message after an hour: say the slot is still open and ask which time to hold. Never send a second one."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

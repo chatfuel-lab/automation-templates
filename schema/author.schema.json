@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/chatfuel-lab/automation-templates/main/schema/author.schema.json",
+  "title": "AuthorProfile",
+  "type": "object",
+  "required": ["id", "name", "avatarUrl", "aboutParagraphs", "socialLinks"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Unique author slug. Matches template.author and the filename. Used in /templates/author/{id}."
+    },
+    "name": { "type": "string", "minLength": 1 },
+    "avatarUrl": {
+      "type": "string",
+      "description": "Path to a file in assets/, relative to the repository root. Empty string means no avatar."
+    },
+    "aboutParagraphs": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "socialLinks": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "Author link URLs. The icon is picked automatically from the domain."
+    },
+    "reviews": {
+      "type": "array",
+      "items": { "$ref": "./template.schema.json#/$defs/review" }
+    }
+  }
+}

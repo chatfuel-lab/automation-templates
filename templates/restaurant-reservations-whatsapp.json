@@ -1,0 +1,81 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "restaurant-reservations-whatsapp",
+  "title": "Table reservations",
+  "category": "Local services",
+  "iconType": "chat",
+  "categories": ["Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Reservations and menu questions",
+  "whatClientGets": "A booked room, every service",
+  "exampleOutcome": "Up to 25% more covers booked",
+  "aboutParagraphs": [
+    "Reservation requests arrive exactly when the restaurant is busiest, and nobody is answering WhatsApp at seven on a Friday.",
+    "This template takes the booking without a human: date, time, how many people, and anything the kitchen needs to know about allergies or a birthday. It answers the questions that would otherwise become a phone call — opening hours, whether there is a set menu, whether the terrace is covered, whether dogs are allowed — and hands large groups and private-hire requests to the manager, because those are not really reservations."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Request\narrives",
+    "Date and\nsize",
+    "Menu\nanswered",
+    "Notes\ncaptured",
+    "Table\nconfirmed"
+  ],
+  "revenueMin": 8000,
+  "revenueMax": 26000,
+  "defaultClients": 14,
+  "maxClients": 32,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You take table reservations for a restaurant. Warm and efficient.\nAnswer in the language the person writes in. Two lines is usually enough.\nFor a booking you need: the date, the time, and how many people. Then ask whether anyone in the party has an allergy or a dietary requirement, and whether the table is for an occasion.\nYou may answer from the knowledge base: opening hours, whether there is a set or tasting menu and what it costs, whether the terrace is covered, dress code, parking, whether dogs are allowed, and whether children are welcome.\nNever confirm a table the knowledge base does not show as available, never promise a specific table, and never invent a dish. If a dietary requirement is unusual, say the kitchen will confirm.\nGroups above the size in the knowledge base and private hire go to the manager."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "party_size", "description": "How many people are coming" },
+                  { "name": "reservation_datetime", "description": "The date and time they want the table" },
+                  { "name": "dietary_notes", "description": "Allergies or dietary requirements in the party" },
+                  { "name": "occasion", "description": "Whether the booking is for a birthday or another occasion" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The party is larger than the group size in the knowledge base, or the person asks about private hire or an event",
+                    "messagePrompt": "Say the manager looks after larger bookings and will come back with options today."
+                  },
+                  {
+                    "switchingConditions": "The person is complaining about a previous visit",
+                    "messagePrompt": "Apologise once and say the manager will get in touch personally."
+                  }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "BookWithTeammatesReview" } } },
+          { "messageDelays": { "update": { "enabled": true } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

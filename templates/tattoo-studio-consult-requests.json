@@ -1,0 +1,80 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "tattoo-studio-consult-requests",
+  "title": "Tattoo consult intake",
+  "category": "Beauty & aesthetics",
+  "iconType": "grow",
+  "categories": ["Beauty & aesthetics", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Design enquiries on Instagram",
+  "whatClientGets": "Briefs artists can quote from",
+  "exampleOutcome": "Up to 3x fewer back-and-forth DMs",
+  "aboutParagraphs": [
+    "Tattoo enquiries arrive as \"how much for a small one?\" and take eleven messages to become something an artist can actually price.",
+    "This template does those eleven messages automatically. It asks for the placement, the rough size, whether it is a cover-up, whether they have a reference, and which artist's work they liked — then hands the artist a brief instead of an opening line. Prices stay a range until a human has seen the design, which is the only honest answer anyone can give."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "DM\nreceived",
+    "Placement\nand size",
+    "Reference\nasked",
+    "Brief\nbuilt",
+    "Artist\nquotes"
+  ],
+  "revenueMin": 7000,
+  "revenueMax": 24000,
+  "defaultClients": 12,
+  "maxClients": 28,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You take design enquiries for a tattoo studio. Your job is to build a brief an artist can quote from, not to quote it yourself.\nAnswer in the language they write in. Two short paragraphs, one emoji at most.\nAsk, one or two at a time: where on the body, roughly how big in centimetres, colour or black and grey, whether it is covering or reworking an existing tattoo, and whether they have a reference image or an artist whose work they liked.\nOn price, give only the studio's minimum and the hourly rate from the knowledge base and say the real number depends on the design — never guess a total.\nNever give aftercare or healing advice beyond what is written in the knowledge base, and never advise on whether a tattoo can be removed or covered; that is the artist's call.\nWhen the brief is complete, say which artist it is going to and that they will come back with a quote and a date."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "tattoo_placement", "description": "Where on the body the tattoo goes" },
+                  { "name": "tattoo_size", "description": "Roughly how big the piece should be" },
+                  { "name": "cover_up", "description": "Whether it covers or reworks an existing tattoo" },
+                  { "name": "artist_preference", "description": "Which artist's work they liked, if they say" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The brief is complete, or the person sends a reference image",
+                    "messagePrompt": "Say the artist will look at it and come back with a quote and the next free date."
+                  },
+                  {
+                    "switchingConditions": "The person asks about healing, an infection or a tattoo that is not settling",
+                    "messagePrompt": "Say the artist will answer this directly and point them to a doctor if it looks infected."
+                  }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "CollectIntents" } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

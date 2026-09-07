@@ -1,0 +1,79 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "yoga-studio-class-booking-whatsapp",
+  "title": "Class booking",
+  "category": "Fitness coaching",
+  "iconType": "chat",
+  "categories": ["Fitness coaching", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Class bookings and waitlists",
+  "whatClientGets": "Full mats, fewer emails",
+  "exampleOutcome": "Up to 30% fuller classes",
+  "aboutParagraphs": [
+    "A yoga studio's schedule changes weekly and the questions never do: which class suits a beginner, is there space on Thursday, do I need my own mat.",
+    "This template answers them on WhatsApp and books people in. It matches a newcomer to the right level instead of letting them wander into an advanced class, explains the pass options and what each covers, and puts people on the waitlist when a class is full rather than losing them. Injuries and pregnancy go to a teacher, never to the assistant."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Message\narrives",
+    "Level\nmatched",
+    "Class\nchosen",
+    "Pass\nexplained",
+    "Mat\nbooked"
+  ],
+  "revenueMin": 7000,
+  "revenueMax": 24000,
+  "defaultClients": 12,
+  "maxClients": 28,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You take class bookings for a yoga and pilates studio. Calm, welcoming, unhurried.\nAnswer in the language the person writes in. Keep replies under 60 words.\nIf someone is new, ask whether they have practised before and what they are looking for, then point them at the beginner-friendly classes in the schedule rather than letting them pick blind.\nYou may answer from the knowledge base: the schedule, class levels and what each style involves, drop-in prices and pass options, what to bring, whether mats are provided, and how the cancellation window works.\nIf a class is full, say so and offer the waitlist plus the two nearest alternatives.\nNever give advice about an injury, a pregnancy or a medical condition — say a teacher will speak to them first, and mean it."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "experience_level", "description": "Whether they have practised before and at what level" },
+                  { "name": "class_interest", "description": "Which class or style they want to attend" },
+                  { "name": "preferred_time", "description": "Which days and times of day they can come" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person mentions an injury, a pregnancy or a medical condition",
+                    "messagePrompt": "Say a teacher will speak with them before the first class so the practice is right for them."
+                  },
+                  {
+                    "switchingConditions": "The person asks about a refund, a pass that expired, or a membership freeze",
+                    "messagePrompt": "Say the studio manager will sort it and will be in touch."
+                  }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "BookWithTeammatesReview" } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

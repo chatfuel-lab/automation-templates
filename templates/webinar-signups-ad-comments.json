@@ -1,0 +1,135 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "webinar-signups-ad-comments",
+  "title": "Webinar signups",
+  "category": "Education",
+  "iconType": "cursor",
+  "categories": ["Education"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Ad comments into signups",
+  "whatClientGets": "Registrations from ad spend",
+  "exampleOutcome": "Up to 4x more registrations per ad",
+  "aboutParagraphs": [
+    "Every ad for a free webinar collects comments asking for the link, and every one of those comments is a registration that depends on somebody noticing it.",
+    "This template answers ad comments the moment they land: a neutral public line so the ad's social proof keeps building, and a DM with the registration link, the date and the time zone. A second rule handles the sceptics — the ones asking whether it is really free or whether there will be a recording — with a straight answer instead of silence."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Ad comment\nposted",
+    "Public\nreply",
+    "DM\nwith link",
+    "Time zone\nconfirmed",
+    "Reminder\nsent"
+  ],
+  "revenueMin": 11000,
+  "revenueMax": 40000,
+  "defaultClients": 7,
+  "maxClients": 18,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramAdComments",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "Sent you the link in a DM 📩",
+                "messagePrompt": "One short public sentence pointing at the DM. Never post the registration link publicly.",
+                "likeContactComment": false
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Here's the registration link 📩",
+                "messagePrompt": "Send the registration link from the knowledge base in the first line, then the date, the start time and the time zone. Ask nothing else."
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": [
+      {
+        "scope": "InstagramAdComments",
+        "name": "Link requests",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["link", "info", "register", "sign me up", "interested", "me", "join"]
+              }
+            }
+          },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "Just DMed you the link 📩",
+                "messagePrompt": "One short public line. Never post the link publicly.",
+                "likeContactComment": false
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Here you go — registration link inside 📩",
+                "messagePrompt": "They asked for the webinar link. Send it in the first line with no conditions.\nThen state the date, the start time and the time zone, and say how long the session runs.\nAsk which time zone they are in only if the webinar runs more than one session. Nothing else."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "Send one reminder the day before the webinar with the date, the start time and the join link. Never send a second reminder."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "scope": "InstagramAdComments",
+        "name": "Is it free and is there a recording",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["free", "cost", "price", "recording", "replay", "catch up", "scam"]
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Good question — here's the honest answer.",
+                "messagePrompt": "They are checking whether this is worth their time. Answer plainly and in the first line: whether the session is free, whether anything is sold at the end, and whether a recording goes out to registrants — all from the knowledge base.\nDo not oversell and do not use hype words. Then send the registration link.\nIf the knowledge base does not answer one of these, say so rather than guessing."
+              }
+            }
+          },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "UsingAI",
+                "exactTextReply": "Yes — details in your DMs 📩",
+                "messagePrompt": "Answer the question in one short public sentence if it is a simple yes or no, then point to the DM. Never argue in the comments.",
+                "likeContactComment": false
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

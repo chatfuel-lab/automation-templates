@@ -1,0 +1,107 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "online-coach-bio-link-funnel",
+  "title": "Bio-link coaching funnel",
+  "category": "Fitness coaching",
+  "iconType": "cursor",
+  "categories": ["Fitness coaching", "Education"],
+  "author": "chatfuel-team",
+  "whatItRuns": "ig.me links into conversations",
+  "whatClientGets": "Traffic you can attribute",
+  "exampleOutcome": "Up to 2x more intro calls booked",
+  "aboutParagraphs": [
+    "An online coach sends traffic to a link in bio and then has no idea which post, story or podcast actually produced the person now sitting in the DMs.",
+    "This template gives every campaign its own ig.me reference and starts a different conversation for each one. The bio link gets the standard intro-call flow; a launch reference gets the launch offer named up front. Because the reference travels with the chat, the coach can see which campaign produced calls rather than which produced clicks."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Link\nclicked",
+    "Campaign\nidentified",
+    "Offer\nstated",
+    "Goal\nasked",
+    "Call\nbooked"
+  ],
+  "revenueMin": 12000,
+  "revenueMax": 45000,
+  "defaultClients": 8,
+  "maxClients": 20,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramIgMeLinks",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "This person opened the chat from a link in a coach's bio. They already know who the coach is, so skip the introduction.\nAnswer in the language they write in. Two short paragraphs, one emoji at most.\nOffer the free intro call in the first message and ask what they are working towards right now.\nYou may explain from the knowledge base: what the coaching includes, how long a programme runs, whether it is group or one to one, what it costs, and how check-ins work.\nNever prescribe training or nutrition, never comment on someone's body, and never promise a result or a timeline.\nWhen they are interested, offer the two nearest free call slots."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If they opened the chat and went quiet, send one message after a few hours: offer the free intro call again and give the two nearest slots. Never send a second nudge."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "coaching_goal", "description": "What they want to achieve" },
+                  { "name": "training_days", "description": "How many days a week they can train" }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": [
+      {
+        "scope": "InstagramIgMeLinks",
+        "name": "Launch campaign link",
+        "settings": [
+          { "refLinks": { "update": { "refs": ["launch"] } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "This chat came from the launch campaign link. Open by naming the launch offer exactly as the knowledge base states it, including when it closes.\nThen ask what they are working towards and offer the two nearest onboarding call slots.\nNever extend the deadline, never invent a bonus, and never discount. If they say the price is too high, say what the payment options are if the knowledge base lists any, and otherwise leave it."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If a launch-link chat goes quiet, send one message: restate when the offer closes and ask whether they want a call before then. Never send a second nudge."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "scope": "InstagramIgMeLinks",
+        "name": "Podcast and collaboration links",
+        "settings": [
+          { "refLinks": { "update": { "refs": ["podcast", "collab"] } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "This chat came from a podcast appearance or a collaboration. They have heard the coach speak but know nothing about the programmes.\nOpen by thanking them for listening, then explain in two sentences what the coaching actually is.\nSend the free resource from the knowledge base first and ask for nothing in return. Only offer the intro call if they ask a second question."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

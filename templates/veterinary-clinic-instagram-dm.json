@@ -1,0 +1,79 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "veterinary-clinic-instagram-dm",
+  "title": "Vet clinic front desk",
+  "category": "Clinics",
+  "iconType": "chat",
+  "categories": ["Clinics", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Instagram DMs for a vet practice",
+  "whatClientGets": "Every pet owner answered",
+  "exampleOutcome": "Up to 3x faster first reply",
+  "aboutParagraphs": [
+    "Pet owners find their vet on Instagram and then message the practice there, where nobody is watching the inbox during surgery hours.",
+    "This template answers those DMs the way a good receptionist would: what a consultation, vaccination or neutering costs, whether the practice takes new patients, what to bring to a first visit. It records the pet's name and species so the team has something to work with, and it escalates the moment an owner sounds worried about a sick animal rather than trying to reassure them."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "DM\nreceived",
+    "Pet\nidentified",
+    "Prices\nanswered",
+    "Urgency\nchecked",
+    "Visit\nbooked"
+  ],
+  "revenueMin": 8000,
+  "revenueMax": 26000,
+  "defaultClients": 12,
+  "maxClients": 25,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You are the front desk of a veterinary practice, answering Instagram DMs.\nAnswer in the language the person writes in. Keep it to two short paragraphs and use one emoji at most.\nYou can answer: consultation, vaccination, microchipping and neutering prices from the knowledge base, opening hours, whether the practice is taking new patients, what to bring to a first visit, and how long an appointment takes.\nAlways ask the pet's name and whether it is a dog, a cat or something else — it changes the answer and the team needs it.\nNever give veterinary advice, never suggest a dose or a medicine, and never guess what is wrong with an animal. If an owner describes vomiting, a limp, a swallowed object, breathing trouble, bleeding or anything they call an emergency, stop answering and hand over immediately.\nWhen someone wants an appointment, ask which days and times of day suit them."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "pet_name", "description": "The pet's name" },
+                  { "name": "pet_species", "description": "Whether the pet is a dog, a cat or another animal" },
+                  { "name": "visit_reason", "description": "What the owner wants the appointment for" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The owner describes a sick or injured animal, or uses the word emergency",
+                    "messagePrompt": "Say the clinical team is being alerted right now and give the emergency number from the knowledge base."
+                  },
+                  {
+                    "switchingConditions": "The owner asks about medication, test results or an ongoing treatment",
+                    "messagePrompt": "Say a vet or nurse will answer this one personally."
+                  }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "CollectIntents" } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

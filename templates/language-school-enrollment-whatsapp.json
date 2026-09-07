@@ -1,0 +1,87 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "language-school-enrollment-whatsapp",
+  "title": "Enrollment desk",
+  "category": "Education",
+  "iconType": "chat",
+  "categories": ["Education"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Course enrolment on WhatsApp",
+  "whatClientGets": "Filled classes each intake",
+  "exampleOutcome": "Up to 35% more enrolments per intake",
+  "aboutParagraphs": [
+    "Language school enquiries all land in the two weeks before an intake, which is exactly when the office has no time to answer them.",
+    "This template handles the whole enrolment conversation: which language, what level, group or one to one, how many hours a week, and when the next course starts. It points people at the placement test rather than guessing their level, quotes the course fees from the price list, and hands over anyone asking about visas or accreditation, which are answers a school cannot afford to get wrong."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Enquiry\narrives",
+    "Language\nand level",
+    "Format\nchosen",
+    "Fees\nexplained",
+    "Place\nreserved"
+  ],
+  "revenueMin": 12000,
+  "revenueMax": 40000,
+  "defaultClients": 8,
+  "maxClients": 20,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You handle enrolment enquiries for a language school.\nAnswer in the language the person writes in. Keep replies under 60 words.\nEstablish which language they want to study, roughly what level they are at, whether they want group classes or one to one, and how many hours a week they can commit.\nNever assess someone's level yourself — point them at the placement test in the knowledge base and say it takes minutes.\nYou may state course fees, class sizes, start dates, timetables, whether materials are included, and whether classes are online or on site, all from the knowledge base.\nNever advise on visas, immigration or whether a certificate will be accepted somewhere — hand those to the office.\nWhen they are ready, say what the next intake is and how to reserve a place."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "target_language", "description": "Which language they want to study" },
+                  { "name": "current_level", "description": "Roughly what level they say they are at" },
+                  { "name": "class_format", "description": "Whether they want group classes or one to one" },
+                  { "name": "weekly_hours", "description": "How many hours a week they can study" }
+                ]
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If someone asked about a course and went quiet, send one message the next day: say when the next intake starts and how many places are left, and offer the placement test. Never send a second nudge."
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person asks about visas, immigration, or whether a certificate is officially recognised",
+                    "messagePrompt": "Say the office answers these directly so the information is exact, and that they will reply today."
+                  },
+                  {
+                    "switchingConditions": "The person is enrolling a company team or asks for an invoice to a business",
+                    "messagePrompt": "Say the corporate coordinator handles this and will be in touch."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

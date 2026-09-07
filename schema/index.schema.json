@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/chatfuel-lab/automation-templates/main/schema/index.schema.json",
+  "title": "CatalogIndex",
+  "description": "Card-shaped listing of the whole catalog, so the marketplace index page needs a single fetch.",
+  "type": "object",
+  "required": ["templates", "authors"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "templates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "category",
+          "categories",
+          "iconType",
+          "author",
+          "whatItRuns",
+          "whatClientGets",
+          "exampleOutcome"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "category": { "$ref": "./template.schema.json#/$defs/category" },
+          "categories": {
+            "type": "array",
+            "items": { "$ref": "./template.schema.json#/$defs/category" }
+          },
+          "iconType": { "enum": ["cursor", "moon", "repeat", "chat", "grow"] },
+          "author": { "type": "string" },
+          "whatItRuns": { "type": "string" },
+          "whatClientGets": { "type": "string" },
+          "exampleOutcome": { "type": "string" },
+          "rating": { "type": "number" }
+        }
+      }
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "avatarUrl"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "avatarUrl": { "type": "string" }
+        }
+      }
+    }
+  }
+}

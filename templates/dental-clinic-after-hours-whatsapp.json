@@ -1,0 +1,75 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "dental-clinic-after-hours-whatsapp",
+  "title": "After-hours dental desk",
+  "category": "Clinics",
+  "iconType": "moon",
+  "categories": ["Clinics", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "After-hours patient replies",
+  "whatClientGets": "No lost evening enquiries",
+  "exampleOutcome": "Up to 30% more booked appointments",
+  "aboutParagraphs": [
+    "Most people look for a dentist after work, which is exactly when the front desk has gone home.",
+    "This template puts an AI receptionist on the clinic's WhatsApp number outside working hours. It answers the questions that decide whether someone books — what a treatment costs, how long it takes, whether the clinic takes their insurance — collects the details a real appointment needs, and hands anything clinical to the team. In the morning the staff open a list of pre-qualified requests instead of a voicemail box."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Evening\nmessage",
+    "Instant\nreply",
+    "Treatment\nanswered",
+    "Slot\nrequested",
+    "Morning\nhandoff"
+  ],
+  "revenueMin": 12000,
+  "revenueMax": 38000,
+  "defaultClients": 10,
+  "maxClients": 25,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "OutsideOfWorkingHours" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You are the evening receptionist of a dental clinic. The practice is closed, so say so warmly in the first message and make clear you can still take the booking.\nAnswer in the language the person writes in. Keep replies under 60 words unless a treatment needs explaining.\nYou can talk about: what each treatment involves, roughly how long an appointment takes, opening hours, parking and directions, and which insurers the clinic works with. Take prices only from the knowledge base and say plainly when a price depends on an examination.\nNever diagnose, never estimate how urgent a symptom is, and never promise a clinical result. If someone describes pain, bleeding, swelling or a knocked-out tooth, tell them to call the emergency number in the knowledge base and offer the first slot the clinic has.\nWhen they want to book, ask which treatment, whether they have been to the clinic before, and which days and times of day suit them. Confirm that the team will lock the slot in when the practice opens."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If someone asked about a treatment in the evening and then went quiet, send one message the next morning: remind them which treatment they asked about and offer to put them in the diary. Never send a second nudge."
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person describes pain, swelling, bleeding or a dental emergency",
+                    "messagePrompt": "Say the clinic will call them back first thing, and point them to the emergency number in the meantime."
+                  },
+                  {
+                    "switchingConditions": "The person asks about an existing treatment plan, a complaint or a refund",
+                    "messagePrompt": "Say a member of the practice team will pick this up personally when the clinic opens."
+                  }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "CollectIntents" } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

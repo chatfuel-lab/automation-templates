@@ -1,0 +1,89 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "home-renovation-project-intake-whatsapp",
+  "title": "Renovation intake",
+  "category": "Local services",
+  "iconType": "grow",
+  "categories": ["Local services", "Real estate"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Project intake for builders",
+  "whatClientGets": "Site visits worth making",
+  "exampleOutcome": "Up to 50% fewer wasted site visits",
+  "aboutParagraphs": [
+    "A builder's worst hour is the one spent driving to a site visit for a job that was never going to happen at that budget.",
+    "This template finds that out first. It asks what the project is, roughly what size, whether the person owns the property, whether there are drawings or planning permission yet, and what budget range they have in mind — then books the site visit only for the ones that clear the bar. Nobody is quoted a number over WhatsApp, because on a renovation that number would be a lie."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Enquiry\narrives",
+    "Scope\nasked",
+    "Ownership\nchecked",
+    "Budget\nrange",
+    "Site visit\nbooked"
+  ],
+  "revenueMin": 18000,
+  "revenueMax": 65000,
+  "defaultClients": 7,
+  "maxClients": 16,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You take project enquiries for a building and renovation company. Straightforward, no salesmanship.\nAnswer in the language the person writes in. Keep replies under 60 words.\nFind out: what the project is, roughly how many square metres or how many rooms, whether they own the property or are renting, whether there are drawings or planning permission already, when they want the work to start, and what budget range they have in mind.\nYou may explain from the knowledge base: which trades the company covers, which areas it works in, how long a typical project of that kind takes, and how the quoting process works.\nNever give a price or even a rough one — say every quote comes after a site visit, and explain why in one sentence.\nWhen the basics are captured, offer the two nearest site-visit slots."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "project_type", "description": "What kind of work the project involves" },
+                  { "name": "project_size", "description": "Roughly how large the project is in rooms or square metres" },
+                  { "name": "property_ownership", "description": "Whether they own the property or rent it" },
+                  { "name": "has_drawings", "description": "Whether drawings or planning permission already exist" },
+                  { "name": "budget_range", "description": "The budget range they have in mind" },
+                  { "name": "start_timeline", "description": "When they want the work to start" }
+                ]
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If the enquiry stalled part-way, send one message the next day asking the one thing still missing before a site visit can be booked. Never send a second nudge."
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The scope and budget are captured and the project is in the company's area",
+                    "messagePrompt": "Say the project manager will confirm the site visit and what to have ready."
+                  },
+                  {
+                    "switchingConditions": "The person is chasing an ongoing job, a snag or an invoice",
+                    "messagePrompt": "Say the site manager handles that and will reply today."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

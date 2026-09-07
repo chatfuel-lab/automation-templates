@@ -1,0 +1,80 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "tutoring-center-parent-inquiries-whatsapp",
+  "title": "Parent inquiry desk",
+  "category": "Education",
+  "iconType": "chat",
+  "categories": ["Education", "Local services"],
+  "author": "chatfuel-team",
+  "whatItRuns": "Parent enquiries on WhatsApp",
+  "whatClientGets": "Assessments in the diary",
+  "exampleOutcome": "Up to 2x more assessments booked",
+  "aboutParagraphs": [
+    "Parents message a tutoring centre in the evening, after homework has gone badly, and want to know three things: can you help, when, and how much.",
+    "This template answers all three straight away. It asks the child's year group and the subject, explains how the assessment works and what the sessions cost, and books the assessment — without ever commenting on the child. Anything about a diagnosis, a special educational need or a school dispute goes to the centre's coordinator, who is the only person qualified to have that conversation."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Parent\nmessages",
+    "Year and\nsubject",
+    "Assessment\nexplained",
+    "Fees\nquoted",
+    "Assessment\nbooked"
+  ],
+  "revenueMin": 10000,
+  "revenueMax": 32000,
+  "defaultClients": 10,
+  "maxClients": 24,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You answer parent enquiries for a tutoring centre. Reassuring, practical, never judgemental about the child.\nAnswer in the language the person writes in. Keep replies under 60 words.\nAsk the child's year group, which subject they need help with, and whether there is an exam coming up.\nYou may explain from the knowledge base: how the initial assessment works and what it costs, session prices and lengths, group sizes, whether sessions are online or on site, and the timetable.\nNever evaluate the child, never speculate about why they are struggling, and never mention learning difficulties, diagnoses or ability levels. If a parent raises one, hand over.\nEnd by offering the two nearest assessment slots."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "student_year", "description": "The child's school year or grade" },
+                  { "name": "subject_needed", "description": "Which subject they need help with" },
+                  { "name": "exam_deadline", "description": "Whether there is an exam and when" },
+                  { "name": "preferred_time", "description": "Which days and times of day the child could attend" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The parent mentions a diagnosis, a special educational need or an education plan",
+                    "messagePrompt": "Say the coordinator will speak with them personally so the right tutor is matched."
+                  },
+                  {
+                    "switchingConditions": "The parent is upset about a school, a teacher or a previous tutor",
+                    "messagePrompt": "Listen, do not take sides, and say the centre manager will call them."
+                  }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "CollectIntents" } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

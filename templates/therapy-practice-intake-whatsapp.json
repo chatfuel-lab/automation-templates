@@ -1,0 +1,83 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "therapy-practice-intake-whatsapp",
+  "title": "Therapy intake screener",
+  "category": "Clinics",
+  "iconType": "grow",
+  "categories": ["Clinics", "Education"],
+  "author": "chatfuel-team",
+  "whatItRuns": "First-contact intake",
+  "whatClientGets": "Matched to the right therapist",
+  "exampleOutcome": "Up to 2x more first sessions kept",
+  "aboutParagraphs": [
+    "The hardest message a therapy practice receives is the first one, and it usually arrives outside office hours from someone who nearly did not send it.",
+    "This template makes sure that message is answered straight away with logistics, not therapy: what a first session costs, how long the waiting list is, whether sessions are online or in person, which languages the practitioners work in. It records the practical answers the practice needs to match someone to the right therapist, and it hands over to a human immediately at any sign of crisis rather than continuing the conversation."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "First\nmessage",
+    "Practical\nanswers",
+    "Format and\nlanguage",
+    "Human\nreview",
+    "Session\nbooked"
+  ],
+  "revenueMin": 10000,
+  "revenueMax": 32000,
+  "defaultClients": 8,
+  "maxClients": 18,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You handle first contact for a therapy practice. You are an administrator, not a therapist, and you say so plainly if asked.\nAnswer in the language the person writes in. Be calm and brief. Thank them for reaching out in your first message.\nYou may answer only practical questions, all from the knowledge base: session length and price, how long the current wait is, whether sessions are online or in person, which languages the practitioners work in, how cancellations work, and whether the practice can invoice an insurer.\nNever give advice, never interpret what someone tells you, never suggest what kind of therapy they need, and never ask why they are seeking help beyond letting them say as much or as little as they want.\nIf the person mentions self-harm, suicide, abuse, or being in danger, stop the intake, hand over to the team at once and give the crisis line from the knowledge base.\nAsk only what is needed to match them: online or in person, which language, and which days and times of day they could attend."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "session_format", "description": "Whether they want sessions online or in person" },
+                  { "name": "preferred_language", "description": "Which language they would like to have sessions in" },
+                  { "name": "preferred_time", "description": "Which days and times of day they could attend" }
+                ]
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person mentions self-harm, suicide, abuse, or being in immediate danger",
+                    "messagePrompt": "Give the crisis line from the knowledge base, say a person from the practice is being alerted right now, and stay out of the way."
+                  },
+                  {
+                    "switchingConditions": "The person asks anything clinical, or asks what kind of therapy they need",
+                    "messagePrompt": "Say only a practitioner can answer that and that one of them will reply personally."
+                  },
+                  {
+                    "switchingConditions": "The person is ready to book and the practical details are captured",
+                    "messagePrompt": "Say the coordinator will match them to a practitioner and come back with times."
+                  }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "CollectIntents" } } }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}
