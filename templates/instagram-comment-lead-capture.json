@@ -1,0 +1,114 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "instagram-comment-lead-capture",
+  "title": "Creator comment funnel",
+  "category": "Coaching & creators",
+  "iconType": "cursor",
+  "categories": ["Coaching & creators", "Education"],
+  "author": "caroline-manchini",
+  "whatItRuns": "Post comments into DMs",
+  "whatClientGets": "A list that grows on its own",
+  "exampleOutcome": "Up to 3x more leads per post",
+  "aboutParagraphs": [
+    "Every post that works fills the comments with \"how do I do this?\" — and every one of those is a lead lost because nobody answered in time.",
+    "This template replies to the comment publicly in one line, opens the DM and carries the conversation to an email: it confirms what the person asked for, delivers the promised material and records the name and email for the list. A separate rule handles anyone who comments the campaign keyword, so the lead magnet goes out immediately instead of turning into one more generic conversation. Price and offer stay out of the public comment, where competitors read."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Comment\non a post",
+    "Public\nreply",
+    "DM\nopened",
+    "Email\ncaptured",
+    "Offer\npresented"
+  ],
+  "revenueMin": 8000,
+  "revenueMax": 26000,
+  "defaultClients": 12,
+  "maxClients": 30,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramPostComments",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "Just sent you a DM 💌",
+                "messagePrompt": "Reply publicly in one short, friendly sentence saying the details went to the DM. Never mention price, a link or terms in the public comment.",
+                "likeContactComment": false
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Hi! Here is what you asked for in the comments 💛",
+                "messagePrompt": "Open the DM by thanking them for the comment and answer exactly what it asked.\nReply in the language the person wrote in. Two short paragraphs at most, one emoji.\nUse only what is in the knowledge base: the name of the material, what it delivers and who it is for. Never invent a bonus, a discount or a deadline.\nIf the person shows interest, ask for their email in one sentence, explaining that is where the material goes."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "name", "description": "What the person wants to be called" },
+                  { "name": "email", "description": "Email to send the material to and add to the list" },
+                  { "name": "interest", "description": "What the person asked for in the comment: material, course, mentoring or service" }
+                ]
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If the person opened the DM and stopped before leaving an email, send a single reminder a few hours later: pick up what they asked for and ask which email to send it to. Do not send a second reminder."
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": [
+      {
+        "scope": "InstagramPostComments",
+        "name": "Campaign keyword",
+        "settings": [
+          {
+            "keywords": {
+              "update": {
+                "reactTo": "CommentThatContains",
+                "keywords": ["want", "i want", "guide", "resource", "ebook", "checklist", "link", "info"]
+              }
+            }
+          },
+          {
+            "publicReply": {
+              "update": {
+                "publicReplyHowToReply": "ExactText",
+                "exactTextReply": "Sent it to your DM 📩",
+                "messagePrompt": "One short sentence pointing to the DM. Never mention price or a link in the public comment.",
+                "likeContactComment": false
+              }
+            }
+          },
+          {
+            "privateReply": {
+              "update": {
+                "privateReplyHowToReply": "UsingAI",
+                "exactTextReply": "Hi! Confirm your best email and I will send it now 📩",
+                "messagePrompt": "The person commented the campaign keyword, so they already want the material. Do not restart the conversation: confirm in one line what they are getting and ask for the email in the same message.\nOnce the email arrives, confirm it is sent and say in one sentence what they will find inside.\nDo not push a sale in this first conversation. If they ask about a paid course or service, answer with what is in the knowledge base and offer to keep talking."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

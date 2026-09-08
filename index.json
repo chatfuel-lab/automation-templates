@@ -2,31 +2,18 @@
   "$schema": "./schema/index.schema.json",
   "templates": [
     {
-      "id": "asistente-de-dm-para-negocios-locales",
-      "title": "Asistente de DM para negocios",
-      "category": "Local services",
+      "id": "ai-reception-service-business-whatsapp",
+      "title": "AI reception desk",
+      "category": "Professional services",
       "categories": [
-        "Local services",
-        "Professional services"
+        "Professional services",
+        "Local services"
       ],
-      "iconType": "chat",
-      "author": "alejavi-rivera",
-      "whatItRuns": "Preguntas frecuentes en Instagram",
-      "whatClientGets": "Respuestas en segundos",
-      "exampleOutcome": "Hasta 70% de mensajes resueltos solos"
-    },
-    {
-      "id": "atencion-de-pedidos-tienda-online-whatsapp",
-      "title": "Atención de pedidos por WhatsApp",
-      "category": "E-commerce",
-      "categories": [
-        "E-commerce"
-      ],
-      "iconType": "chat",
-      "author": "adrian-aramayo",
-      "whatItRuns": "Consultas de pedidos y envíos",
-      "whatClientGets": "Menos mensajes sin responder",
-      "exampleOutcome": "Hasta 60% menos consultas manuales"
+      "iconType": "grow",
+      "author": "oskr-leon",
+      "whatItRuns": "First contact for service firms",
+      "whatClientGets": "A diary filled without calls",
+      "exampleOutcome": "Up to 40% more enquiries handled"
     },
     {
       "id": "auto-repair-service-booking-whatsapp",
@@ -83,20 +70,6 @@
       "exampleOutcome": "Up to 5x more DMs per post"
     },
     {
-      "id": "captura-de-leads-instagram-comentarios",
-      "title": "Captura de leads no Instagram",
-      "category": "Coaching & creators",
-      "categories": [
-        "Coaching & creators",
-        "Education"
-      ],
-      "iconType": "cursor",
-      "author": "caroline-manchini",
-      "whatItRuns": "Comentários que viram DM",
-      "whatClientGets": "Lista de e-mails que cresce sozinha",
-      "exampleOutcome": "Até 3x mais leads por publicação"
-    },
-    {
       "id": "cleaning-service-quote-requests-whatsapp",
       "title": "Cleaning quote desk",
       "category": "Local services",
@@ -122,6 +95,20 @@
       "whatItRuns": "Confirmations and win-backs",
       "whatClientGets": "Fewer empty chairs",
       "exampleOutcome": "Up to 40% fewer no-shows"
+    },
+    {
+      "id": "course-signups-instagram-dm",
+      "title": "Course signups by DM",
+      "category": "Education",
+      "categories": [
+        "Education",
+        "Coaching & creators"
+      ],
+      "iconType": "chat",
+      "author": "roxana-falasco",
+      "whatItRuns": "Course and price questions in DMs",
+      "whatClientGets": "More students enrolled",
+      "exampleOutcome": "Up to 2x more signups per launch"
     },
     {
       "id": "dental-clinic-after-hours-whatsapp",
@@ -222,18 +209,18 @@
       "exampleOutcome": "Up to 50% fewer wasted site visits"
     },
     {
-      "id": "inscripciones-a-cursos-instagram-dm",
-      "title": "Inscripciones a cursos por DM",
-      "category": "Education",
+      "id": "instagram-comment-lead-capture",
+      "title": "Creator comment funnel",
+      "category": "Coaching & creators",
       "categories": [
-        "Education",
-        "Coaching & creators"
+        "Coaching & creators",
+        "Education"
       ],
-      "iconType": "chat",
-      "author": "roxana-falasco",
-      "whatItRuns": "Dudas sobre cursos y precios",
-      "whatClientGets": "Más alumnos inscritos",
-      "exampleOutcome": "Hasta 2x más inscripciones por lanzamiento"
+      "iconType": "cursor",
+      "author": "caroline-manchini",
+      "whatItRuns": "Post comments into DMs",
+      "whatClientGets": "A list that grows on its own",
+      "exampleOutcome": "Up to 3x more leads per post"
     },
     {
       "id": "kids-camp-registration-ad-leads",
@@ -275,6 +262,20 @@
       "whatItRuns": "Instagram ad conversations",
       "whatClientGets": "Qualified leads, not clicks",
       "exampleOutcome": "Up to 40% lower cost per booking"
+    },
+    {
+      "id": "local-business-dm-assistant",
+      "title": "Local business DM assistant",
+      "category": "Local services",
+      "categories": [
+        "Local services",
+        "Professional services"
+      ],
+      "iconType": "chat",
+      "author": "alejavi-rivera",
+      "whatItRuns": "Instagram FAQs for a local business",
+      "whatClientGets": "Answers in seconds",
+      "exampleOutcome": "Up to 70% of messages handled without staff"
     },
     {
       "id": "med-spa-price-list-instagram-dm",
@@ -389,6 +390,19 @@
       "exampleOutcome": "Up to 5x bigger launch waitlist"
     },
     {
+      "id": "online-store-order-support-whatsapp",
+      "title": "Order and delivery desk",
+      "category": "E-commerce",
+      "categories": [
+        "E-commerce"
+      ],
+      "iconType": "chat",
+      "author": "adrian-aramayo",
+      "whatItRuns": "Order and shipping questions",
+      "whatClientGets": "Fewer messages left unanswered",
+      "exampleOutcome": "Up to 60% fewer questions answered by hand"
+    },
+    {
       "id": "personal-trainer-comment-to-dm",
       "title": "PT comment-to-DM",
       "category": "Fitness coaching",
@@ -468,20 +482,6 @@
       "whatItRuns": "Listing comments into DMs",
       "whatClientGets": "Leads from every property post",
       "exampleOutcome": "Up to 6x more listing enquiries"
-    },
-    {
-      "id": "recepcion-ia-empresas-de-servicios-whatsapp",
-      "title": "Recepción con IA para servicios",
-      "category": "Professional services",
-      "categories": [
-        "Professional services",
-        "Local services"
-      ],
-      "iconType": "grow",
-      "author": "oskr-leon",
-      "whatItRuns": "Primer contacto de clientes nuevos",
-      "whatClientGets": "Agenda llena sin llamadas",
-      "exampleOutcome": "Hasta 40% más solicitudes atendidas"
     },
     {
       "id": "rental-inquiry-autoresponder-instagram",

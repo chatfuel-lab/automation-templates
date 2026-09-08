@@ -1,0 +1,87 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "course-signups-instagram-dm",
+  "title": "Course signups by DM",
+  "category": "Education",
+  "iconType": "chat",
+  "categories": ["Education", "Coaching & creators"],
+  "author": "roxana-falasco",
+  "whatItRuns": "Course and price questions in DMs",
+  "whatClientGets": "More students enrolled",
+  "exampleOutcome": "Up to 2x more signups per launch",
+  "aboutParagraphs": [
+    "During a launch the DM becomes the bottleneck: the same five questions — what is included, how long it runs, what it costs, whether there is a certificate, whether it is recorded — arrive hundreds of times, and the signup dies in the silence between one and the next.",
+    "This template answers those questions from the course's real syllabus, tells the programs apart when there is more than one, and walks the person to the payment step without promising anything the material does not say. It collects the email and the course they are after, so someone who does not enroll today stays a contact instead of a lost message. Anything touching billing or a payment already made goes to a person on the team."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "DM\nreceived",
+    "Course\nidentified",
+    "Questions\nanswered",
+    "Place\nheld",
+    "Payment\nsent"
+  ],
+  "revenueMin": 8000,
+  "revenueMax": 24000,
+  "defaultClients": 12,
+  "maxClients": 28,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You answer the DMs of an online course creator. Reply in the person's language, in two short paragraphs at most and with one emoji at most.\nIf there is more than one program, ask which one they are interested in before giving any price.\nAnswer with the syllabus, the length, the format, the price and the dates exactly as they stand in the knowledge base. If there is a certificate or access to the recordings, say so in the material's own words.\nNever invent a discount, a scholarship, a deadline or a promise of results, and never say places are running out unless you know it.\nWhen the person has decided, send them the enrollment link from the knowledge base and explain in one line what happens after payment."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If the person asked about a course and never wrote back, send a single message the next day: name the specific course they asked about and offer to settle the question that was left open. No invented urgency and no second reminder."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "course_of_interest", "description": "Program or course they are asking about" },
+                  { "name": "email", "description": "Email to send the details and the enrollment link to" },
+                  { "name": "starting_point", "description": "Level or situation they are starting from, used to recommend the right program" }
+                ]
+              }
+            }
+          },
+          { "messageDelays": { "update": { "enabled": true } } },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person says they already paid and has a problem with access, the invoice or the charge",
+                    "messagePrompt": "Say someone from the team is checking the payment and will reply shortly. Do not ask for bank or card details."
+                  },
+                  {
+                    "switchingConditions": "The person asks about a collaboration, an interview or anything press-related",
+                    "messagePrompt": "Thank them in one line and say it is going to the team."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

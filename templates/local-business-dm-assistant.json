@@ -1,0 +1,76 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "local-business-dm-assistant",
+  "title": "Local business DM assistant",
+  "category": "Local services",
+  "iconType": "chat",
+  "categories": ["Local services", "Professional services"],
+  "author": "alejavi-rivera",
+  "whatItRuns": "Instagram FAQs for a local business",
+  "whatClientGets": "Answers in seconds",
+  "exampleOutcome": "Up to 70% of messages handled without staff",
+  "aboutParagraphs": [
+    "A neighbourhood business gets the same list on Instagram every day: opening hours, the address, whether you need an appointment, whether they take cards, whether they open on Sunday. Ten-second questions that still go unanswered when the place is full.",
+    "This template takes that whole stretch. It answers the usual questions with the business's own details, says plainly when someone has to come in, and proposes a day and a time when they want to visit — without closing the appointment on its own: it records the intent so the team confirms it. What it does not know, it does not invent — it hands to a person."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "DM\nreceived",
+    "Question\nsorted",
+    "Answer\nsent",
+    "Visit\nproposed",
+    "Team\nif needed"
+  ],
+  "revenueMin": 7000,
+  "revenueMax": 21000,
+  "defaultClients": 15,
+  "maxClients": 35,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "InstagramDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You answer the DMs of a local business. Reply in the person's language, in one or two sentences, no padding.\nOpening hours, address, how to get there, parking, payment methods, whether an appointment is needed and which services are offered: answer with what is in the knowledge base and nothing else.\nIf they ask about a price, give the one in the knowledge base; if it depends on the job, give the range and what decides it. Never invent a figure and never offer a discount.\nIf they want to come in, ask which day and time suits them and say the team confirms it.\nIf the question is not covered by the knowledge base, say so plainly and tell them a person will answer shortly."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If the person said they wanted to come in but never settled on a day, send a single message a few hours later asking which day suits them best. One only."
+              }
+            }
+          },
+          { "messageDelays": { "update": { "enabled": true } } },
+          { "bookingRules": { "update": { "autonomyLevel": "CollectIntents" } } },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person complains about a service they received or asks for a refund",
+                    "messagePrompt": "Apologise in one sentence and say someone from the team is picking it up right now. Do not offer compensation."
+                  },
+                  {
+                    "switchingConditions": "The person asks something that is not in the knowledge base",
+                    "messagePrompt": "Say plainly that someone from the team confirms that one and will reply shortly. Do not improvise the answer."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}
