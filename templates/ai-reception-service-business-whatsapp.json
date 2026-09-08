@@ -1,0 +1,88 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "ai-reception-service-business-whatsapp",
+  "title": "AI reception desk",
+  "category": "Professional services",
+  "iconType": "grow",
+  "categories": ["Professional services", "Local services"],
+  "author": "oskr-leon",
+  "whatItRuns": "First contact for service firms",
+  "whatClientGets": "A diary filled without calls",
+  "exampleOutcome": "Up to 40% more enquiries handled",
+  "aboutParagraphs": [
+    "At a service business the first message almost never arrives during office hours, and whoever answers tomorrow has already lost to whoever answered last night.",
+    "This template takes the whole first contact: it works out what the person needs, explains how the firm works and what the quote depends on, and gathers the three details without which nobody can prepare a proposal — which service, by when, and at what order of magnitude. It leaves the request ready for a person to pick up and propose a meeting. It closes no prices and signs nothing: it records the intent and tells the team."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Message\nreceived",
+    "Need\nidentified",
+    "Scope\nexplained",
+    "Call\nproposed",
+    "Team\nnotified"
+  ],
+  "revenueMin": 15000,
+  "revenueMax": 45000,
+  "defaultClients": 10,
+  "maxClients": 24,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You handle first contact for a service business. Reply in the person's language, in messages under 70 words.\nStart by working out what they need and by when. Use the knowledge base to explain what the service includes, how the process runs and what the price depends on.\nGive ranges, never a closed figure, and always say what pushes a quote up or down. Do not promise delivery dates or results.\nOnce you have the service, the timeline and the order of magnitude of the budget, propose a short call and ask which days and time slots suit them.\nIf the person asks for specific legal, tax or financial advice, do not give it: say the team covers that on the call."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If the conversation stalled before a call was agreed, send a single message the next day: sum up in one line what the person asked for and ask which day suits them to talk. Do not push after that."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "service_needed", "description": "Which service the person needs" },
+                  { "name": "timeline", "description": "When they need it by" },
+                  { "name": "budget_range", "description": "Order of magnitude of the budget they are working with, if they share it" },
+                  { "name": "availability", "description": "Days and time slots when they can talk" }
+                ]
+              }
+            }
+          },
+          { "bookingRules": { "update": { "autonomyLevel": "CollectIntents" } } },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person asks for a formal proposal, a contract or specific payment terms",
+                    "messagePrompt": "Say someone from the team prepares the proposal and will be in touch. Do not preview figures or terms."
+                  },
+                  {
+                    "switchingConditions": "The person is an existing client with an incident or a complaint",
+                    "messagePrompt": "Say in one line that the case is going to the team right now, and do not try to resolve it."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

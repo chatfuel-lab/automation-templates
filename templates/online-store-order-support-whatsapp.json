@@ -1,0 +1,94 @@
+{
+  "$schema": "../schema/template.schema.json",
+  "id": "online-store-order-support-whatsapp",
+  "title": "Order and delivery desk",
+  "category": "E-commerce",
+  "iconType": "chat",
+  "categories": ["E-commerce"],
+  "author": "adrian-aramayo",
+  "whatItRuns": "Order and shipping questions",
+  "whatClientGets": "Fewer messages left unanswered",
+  "exampleOutcome": "Up to 60% fewer questions answered by hand",
+  "aboutParagraphs": [
+    "In an online store most messages are always the same three: where is my order, how much is shipping, and is a size in stock. Answering them by hand eats the day, and some still go unanswered.",
+    "This template runs the store's chat end to end: it asks for the order number or the purchase email, explains the status and the timings from the knowledge base, shows catalog photos when someone asks about a product, and suggests alternatives when something is out of stock. Returns, complaints and anything about a charge go to a person the moment they appear — those are the conversations where an automated reply costs a customer."
+  ],
+  "videoUrl": "",
+  "knowledgeBaseUrl": "",
+  "funnelSteps": [
+    "Message\nreceived",
+    "Order\nidentified",
+    "Status\nshared",
+    "Product\nsuggested",
+    "Agent\nif needed"
+  ],
+  "revenueMin": 9000,
+  "revenueMax": 27000,
+  "defaultClients": 14,
+  "maxClients": 30,
+  "reviews": [],
+  "fuelyAutomationTemplate": {
+    "baseAutomations": [
+      {
+        "scope": "WhatsAppDirectMessages",
+        "settings": [
+          { "whenAIReplies": { "update": { "option": "Always" } } },
+          {
+            "incomingMessages": {
+              "update": {
+                "howToReply": "UsingAI",
+                "messagePrompt": "You run the WhatsApp of an online store. Reply in the language the person writes in and stay under 60 words per message.\nIf they ask about an order, ask for the order number or the email they bought with before giving out any detail, then explain the status and the timing exactly as it stands in the knowledge base.\nIf they ask about a product, answer with price, sizes or variants and availability, always from the knowledge base. If something is out of stock, say so and offer a close alternative.\nNever invent a delivery date, a tracking number, a price or a discount. If you do not have the detail, say so and tell them the team confirms it.\nClose by offering to help finish the purchase."
+              }
+            }
+          },
+          {
+            "followUps": {
+              "update": {
+                "howToSend": "Send",
+                "messagePrompt": "If the person asked about a product and never wrote back, send a single reminder a few hours later: name the product they asked about and offer to settle the last question. Do not send a second reminder, and never offer a discount to close the sale."
+              }
+            }
+          },
+          {
+            "collectContactInfo": {
+              "update": {
+                "howToCollect": "CollectInfo",
+                "captures": [
+                  { "name": "order_number", "description": "Order number the person gives" },
+                  { "name": "purchase_email", "description": "Email the purchase was made with, used to find the order" },
+                  { "name": "product_asked_about", "description": "Product, size or variant they are asking about" }
+                ]
+              }
+            }
+          },
+          {
+            "catalogImages": {
+              "update": {
+                "whenToShow": "WhenAsked",
+                "imagesPerCatalogItem": 3
+              }
+            }
+          },
+          {
+            "switchToHuman": {
+              "update": {
+                "howToSwitch": "SwitchToTeammates",
+                "rules": [
+                  {
+                    "switchingConditions": "The person asks for a return, an exchange or a refund",
+                    "messagePrompt": "Say someone from the team handles returns and will reply shortly. Do not promise timings or amounts."
+                  },
+                  {
+                    "switchingConditions": "The person reports a damaged, incomplete or undelivered order, or mentions an incorrect charge",
+                    "messagePrompt": "Apologise in one line, say the case is going to the team right now, and do not offer compensation."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "customAutomations": []
+  }
+}

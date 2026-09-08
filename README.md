@@ -25,11 +25,10 @@ Asset paths are written **relative to the repository root**, without a leading s
 `assets/demo.mp4` — and the consumer joins them onto `MARKETPLACE_TEMPLATES_BASE_URL`.
 An empty string means "none".
 
-A template is written in the language of the audience its author writes for, so the catalog is
-mixed-language: `title`, `aboutParagraphs`, `funnelSteps`, the card fields and the AI prompts all
-follow the author, and so does the `id`, which is the page slug. Only `category` and `categories`
-stay English — they are a schema enum, not display copy — and `id` stays ASCII, so accents are
-stripped there and kept everywhere else.
+The catalog is written in English throughout — card copy, `aboutParagraphs`, `funnelSteps`, the
+AI prompts inside `fuelyAutomationTemplate` and the `id`, which is the page slug. An installed
+template still answers each contact in whatever language they write in; that is the job of the
+prompts, not of the catalog copy.
 
 ---
 
