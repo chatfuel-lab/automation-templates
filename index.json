@@ -125,6 +125,34 @@
       "exampleOutcome": "Up to 30% more booked appointments"
     },
     {
+      "id": "dental-clinic-patient-assistant-instagram",
+      "title": "Dental assistant for Instagram DMs",
+      "category": "Clinics",
+      "categories": [
+        "Clinics",
+        "Local services"
+      ],
+      "iconType": "chat",
+      "author": "juan-gonzalez",
+      "whatItRuns": "Patient DMs on Instagram",
+      "whatClientGets": "Every DM steered to a visit",
+      "exampleOutcome": "Up to 50% more DMs turned into visits"
+    },
+    {
+      "id": "dental-clinic-patient-assistant-whatsapp",
+      "title": "Dental patient assistant",
+      "category": "Clinics",
+      "categories": [
+        "Clinics",
+        "Local services"
+      ],
+      "iconType": "chat",
+      "author": "juan-gonzalez",
+      "whatItRuns": "Patient chats on WhatsApp",
+      "whatClientGets": "Assessment visits, not price haggling",
+      "exampleOutcome": "Up to 40% more assessment visits booked"
+    },
+    {
       "id": "dermatology-consult-triage-whatsapp",
       "title": "Skin consult triage",
       "category": "Clinics",
@@ -625,6 +653,11 @@
       "id": "joren-wouters",
       "name": "Joren Wouters",
       "avatarUrl": "assets/authors/joren-wouters.jpg"
+    },
+    {
+      "id": "juan-gonzalez",
+      "name": "Dr. Juan F. González",
+      "avatarUrl": "assets/authors/juan-gonzalez.jpg"
     },
     {
       "id": "oskr-leon",

@@ -1,0 +1,16 @@
+{
+  "$schema": "../schema/author.schema.json",
+  "id": "juan-gonzalez",
+  "name": "Dr. Juan F. González",
+  "avatarUrl": "assets/authors/juan-gonzalez.jpg",
+  "aboutParagraphs": [
+    "Dr. Juan F. González is a dentist and orthodontics specialist, graduated from Universidad Tecnológica de México (UNITEC). He is a faculty member in craniofacial mechatronics at Universidad del Valle (Colombia), a certified Blender for Dental instructor, and a national and international speaker on digital orthodontics, with published research in journals including the American Journal of Orthodontics, Ortodoncia Actual and Kieferorthopädie.",
+    "He maintains a private dental practice in Cuenca, Ecuador, and founded Cursos Odonto 3D in 2021, an academy that has trained thousands of dental professionals worldwide in digital dentistry: 3D printing, surgical guides, CAD/CAM design and digital lab workflows.",
+    "In this catalog, Dr. González contributed two templates for dental clinics, Dental patient assistant on WhatsApp and Dental assistant for Instagram DMs: the front-desk playbook his academy gives clinics, packaged as prompts."
+  ],
+  "socialLinks": [
+    "https://www.instagram.com/cursosodonto3d/",
+    "https://www.youtube.com/@CursosOdonto3D",
+    "https://www.cursosodonto3d.com/"
+  ]
+}
