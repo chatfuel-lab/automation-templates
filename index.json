@@ -126,7 +126,7 @@
     },
     {
       "id": "dental-clinic-patient-assistant-instagram",
-      "title": "Dental assistant for Instagram DMs",
+      "title": "Asistente dental para DMs de Instagram",
       "category": "Clinics",
       "categories": [
         "Clinics",
@@ -134,13 +134,13 @@
       ],
       "iconType": "chat",
       "author": "juan-gonzalez",
-      "whatItRuns": "Patient DMs on Instagram",
-      "whatClientGets": "Every DM steered to a visit",
-      "exampleOutcome": "Up to 50% more DMs turned into visits"
+      "whatItRuns": "DMs de pacientes en Instagram",
+      "whatClientGets": "Cada DM orientado a una visita",
+      "exampleOutcome": "Hasta 50% más DMs convertidos en visitas"
     },
     {
       "id": "dental-clinic-patient-assistant-whatsapp",
-      "title": "Dental patient assistant",
+      "title": "Asistente dental para pacientes",
       "category": "Clinics",
       "categories": [
         "Clinics",
@@ -148,9 +148,9 @@
       ],
       "iconType": "chat",
       "author": "juan-gonzalez",
-      "whatItRuns": "Patient chats on WhatsApp",
-      "whatClientGets": "Assessment visits, not price haggling",
-      "exampleOutcome": "Up to 40% more assessment visits booked"
+      "whatItRuns": "Chats de pacientes en WhatsApp",
+      "whatClientGets": "Valoraciones, no regateo de precios",
+      "exampleOutcome": "Hasta 40% más valoraciones agendadas"
     },
     {
       "id": "dermatology-consult-triage-whatsapp",
