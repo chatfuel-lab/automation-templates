@@ -1,26 +1,26 @@
 {
   "$schema": "../schema/template.schema.json",
   "id": "local-business-dm-assistant",
-  "title": "Local business DM assistant",
+  "title": "Asistente de MD para negocios locales",
   "category": "Local services",
   "iconType": "chat",
   "categories": ["Local services", "Professional services"],
   "author": "alejavi-rivera",
-  "whatItRuns": "Instagram FAQs for a local business",
-  "whatClientGets": "Answers in seconds",
-  "exampleOutcome": "Up to 70% of messages handled without staff",
+  "whatItRuns": "Las dudas de siempre por Instagram",
+  "whatClientGets": "Respuestas en segundos",
+  "exampleOutcome": "Hasta un 70% de mensajes resueltos sin el equipo",
   "aboutParagraphs": [
-    "A neighbourhood business gets the same list on Instagram every day: opening hours, the address, whether you need an appointment, whether they take cards, whether they open on Sunday. Ten-second questions that still go unanswered when the place is full.",
-    "This template takes that whole stretch. It answers the usual questions with the business's own details, says plainly when someone has to come in, and proposes a day and a time when they want to visit — without closing the appointment on its own: it records the intent so the team confirms it. What it does not know, it does not invent — it hands to a person."
+    "Un negocio de barrio recibe cada día la misma lista por Instagram: el horario, la dirección, si hay que pedir cita, si se puede pagar con tarjeta, si abrís el domingo. Preguntas de diez segundos que se quedan sin respuesta cuando el local está lleno.",
+    "Esta plantilla se encarga de todo eso. Responde las preguntas de siempre con los datos del propio negocio, dice claramente cuándo hay que pasarse por el local y, cuando alguien quiere venir, le propone un día y una hora, sin cerrar la cita por su cuenta: registra la intención para que el equipo la confirme. Lo que no sabe, no se lo inventa: se lo pasa a una persona."
   ],
   "videoUrl": "",
   "knowledgeBaseUrl": "",
   "funnelSteps": [
-    "DM\nreceived",
-    "Question\nsorted",
-    "Answer\nsent",
-    "Visit\nproposed",
-    "Team\nif needed"
+    "MD\nrecibido",
+    "Pregunta\nclasificada",
+    "Respuesta\nenviada",
+    "Visita\npropuesta",
+    "Equipo\nsi hace falta"
   ],
   "revenueMin": 7000,
   "revenueMax": 21000,
@@ -37,7 +37,7 @@
             "incomingMessages": {
               "update": {
                 "howToReply": "UsingAI",
-                "messagePrompt": "You answer the DMs of a local business. Reply in the person's language, in one or two sentences, no padding.\nOpening hours, address, how to get there, parking, payment methods, whether an appointment is needed and which services are offered: answer with what is in the knowledge base and nothing else.\nIf they ask about a price, give the one in the knowledge base; if it depends on the job, give the range and what decides it. Never invent a figure and never offer a discount.\nIf they want to come in, ask which day and time suits them and say the team confirms it.\nIf the question is not covered by the knowledge base, say so plainly and tell them a person will answer shortly."
+                "messagePrompt": "Respondes los mensajes directos de un negocio local. Contesta en el idioma de la persona, en una o dos frases, sin relleno.\nUsa el trato que indique la base de conocimiento; si no indica ninguno y te escriben en español, tutea.\nHorario, dirección, cómo llegar, aparcamiento, formas de pago, si hace falta cita previa y qué servicios se ofrecen: responde con lo que hay en la base de conocimiento y nada más.\nSi preguntan por un precio, da el de la base de conocimiento; si depende del trabajo, da el rango y explica de qué depende. Nunca te inventes una cifra ni ofrezcas descuentos.\nSi quieren venir, pregunta qué día y a qué hora le viene bien a la persona y dile que el equipo lo confirma.\nSi la pregunta no está en la base de conocimiento, dilo claramente y di que una persona le responderá enseguida."
               }
             }
           },
@@ -45,7 +45,7 @@
             "followUps": {
               "update": {
                 "howToSend": "Send",
-                "messagePrompt": "If the person said they wanted to come in but never settled on a day, send a single message a few hours later asking which day suits them best. One only."
+                "messagePrompt": "Si la persona ha dicho que quería venir pero no ha fijado un día, envía un único mensaje unas horas después preguntándole qué día le viene mejor. Solo uno."
               }
             }
           },
@@ -57,12 +57,12 @@
                 "howToSwitch": "SwitchToTeammates",
                 "rules": [
                   {
-                    "switchingConditions": "The person complains about a service they received or asks for a refund",
-                    "messagePrompt": "Apologise in one sentence and say someone from the team is picking it up right now. Do not offer compensation."
+                    "switchingConditions": "La persona se queja de un servicio que ha recibido o pide que le devuelvan el dinero",
+                    "messagePrompt": "Pide disculpas en una frase y di que alguien del equipo se encarga ahora mismo. No ofrezcas ninguna compensación."
                   },
                   {
-                    "switchingConditions": "The person asks something that is not in the knowledge base",
-                    "messagePrompt": "Say plainly that someone from the team confirms that one and will reply shortly. Do not improvise the answer."
+                    "switchingConditions": "La persona pregunta algo que no está en la base de conocimiento",
+                    "messagePrompt": "Di claramente que eso lo confirma alguien del equipo y que le responderá enseguida. No improvises la respuesta."
                   }
                 ]
               }

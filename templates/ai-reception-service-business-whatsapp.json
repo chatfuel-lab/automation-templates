@@ -1,26 +1,26 @@
 {
   "$schema": "../schema/template.schema.json",
   "id": "ai-reception-service-business-whatsapp",
-  "title": "AI reception desk",
+  "title": "Recepción con IA",
   "category": "Professional services",
   "iconType": "grow",
   "categories": ["Professional services", "Local services"],
   "author": "oskr-leon",
-  "whatItRuns": "First contact for service firms",
-  "whatClientGets": "A diary filled without calls",
-  "exampleOutcome": "Up to 40% more enquiries handled",
+  "whatItRuns": "Primer contacto de empresas de servicios",
+  "whatClientGets": "Agenda llena sin hacer llamadas",
+  "exampleOutcome": "Hasta 40% más consultas atendidas",
   "aboutParagraphs": [
-    "At a service business the first message almost never arrives during office hours, and whoever answers tomorrow has already lost to whoever answered last night.",
-    "This template takes the whole first contact: it works out what the person needs, explains how the firm works and what the quote depends on, and gathers the three details without which nobody can prepare a proposal — which service, by when, and at what order of magnitude. It leaves the request ready for a person to pick up and propose a meeting. It closes no prices and signs nothing: it records the intent and tells the team."
+    "En una empresa de servicios, el primer mensaje casi nunca llega en horario de oficina, y quien contesta mañana ya perdió contra quien contestó anoche.",
+    "Esta plantilla se encarga de todo el primer contacto: identifica qué necesita la persona, explica cómo trabaja la empresa y de qué depende la cotización, y reúne los tres datos sin los cuales nadie puede preparar una propuesta: qué servicio, para cuándo y de qué monto aproximado es el presupuesto. Deja la solicitud lista para que una persona la retome y proponga una reunión. No cierra precios ni firma nada: registra la intención y le avisa al equipo."
   ],
   "videoUrl": "",
   "knowledgeBaseUrl": "",
   "funnelSteps": [
-    "Message\nreceived",
-    "Need\nidentified",
-    "Scope\nexplained",
-    "Call\nproposed",
-    "Team\nnotified"
+    "Mensaje\nrecibido",
+    "Necesidad\nidentificada",
+    "Alcance\nexplicado",
+    "Llamada\npropuesta",
+    "Equipo\navisado"
   ],
   "revenueMin": 15000,
   "revenueMax": 45000,
@@ -37,7 +37,7 @@
             "incomingMessages": {
               "update": {
                 "howToReply": "UsingAI",
-                "messagePrompt": "You handle first contact for a service business. Reply in the person's language, in messages under 70 words.\nStart by working out what they need and by when. Use the knowledge base to explain what the service includes, how the process runs and what the price depends on.\nGive ranges, never a closed figure, and always say what pushes a quote up or down. Do not promise delivery dates or results.\nOnce you have the service, the timeline and the order of magnitude of the budget, propose a short call and ask which days and time slots suit them.\nIf the person asks for specific legal, tax or financial advice, do not give it: say the team covers that on the call."
+                "messagePrompt": "Usted atiende el primer contacto de una empresa de servicios. Responda en el idioma de la persona, con mensajes de menos de 70 palabras.\nUse el trato que indique la base de conocimiento; si no indica ninguno y le escriben en español, trate de usted.\nEmpiece por entender qué necesita la persona y para cuándo. Use la base de conocimiento para explicar qué incluye el servicio, cómo es el proceso y de qué depende el precio.\nDé rangos, nunca una cifra cerrada, y siempre explique qué hace subir o bajar una cotización. No prometa fechas de entrega ni resultados.\nCuando tenga el servicio, el plazo y el monto aproximado del presupuesto, proponga una llamada corta y pregunte qué días y horarios le quedan bien.\nSi la persona pide asesoría legal, tributaria o financiera específica, no la dé: explíquele que eso lo ve el equipo en la llamada."
               }
             }
           },
@@ -45,7 +45,7 @@
             "followUps": {
               "update": {
                 "howToSend": "Send",
-                "messagePrompt": "If the conversation stalled before a call was agreed, send a single message the next day: sum up in one line what the person asked for and ask which day suits them to talk. Do not push after that."
+                "messagePrompt": "Si la conversación se quedó a medias antes de acordar una llamada, envíe un solo mensaje al día siguiente: resuma en una línea lo que pidió la persona y pregúntele qué día le queda bien para conversar. No insista después de eso."
               }
             }
           },
@@ -54,10 +54,10 @@
               "update": {
                 "howToCollect": "CollectInfo",
                 "captures": [
-                  { "name": "service_needed", "description": "Which service the person needs" },
-                  { "name": "timeline", "description": "When they need it by" },
-                  { "name": "budget_range", "description": "Order of magnitude of the budget they are working with, if they share it" },
-                  { "name": "availability", "description": "Days and time slots when they can talk" }
+                  { "name": "service_needed", "description": "Qué servicio necesita la persona" },
+                  { "name": "timeline", "description": "Para cuándo lo necesita" },
+                  { "name": "budget_range", "description": "Monto aproximado del presupuesto con el que cuenta, si lo comparte" },
+                  { "name": "availability", "description": "Días y horarios en los que puede conversar" }
                 ]
               }
             }
@@ -69,12 +69,12 @@
                 "howToSwitch": "SwitchToTeammates",
                 "rules": [
                   {
-                    "switchingConditions": "The person asks for a formal proposal, a contract or specific payment terms",
-                    "messagePrompt": "Say someone from the team prepares the proposal and will be in touch. Do not preview figures or terms."
+                    "switchingConditions": "La persona pide una propuesta formal, un contrato o condiciones de pago específicas",
+                    "messagePrompt": "Dígale que alguien del equipo prepara la propuesta y se pondrá en contacto. No adelante cifras ni condiciones."
                   },
                   {
-                    "switchingConditions": "The person is an existing client with an incident or a complaint",
-                    "messagePrompt": "Say in one line that the case is going to the team right now, and do not try to resolve it."
+                    "switchingConditions": "La persona ya es cliente y tiene un problema o un reclamo",
+                    "messagePrompt": "Dígale en una línea que el caso pasa al equipo en este momento, y no intente resolverlo."
                   }
                 ]
               }

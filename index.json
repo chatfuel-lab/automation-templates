@@ -3,7 +3,7 @@
   "templates": [
     {
       "id": "ai-reception-service-business-whatsapp",
-      "title": "AI reception desk",
+      "title": "Recepción con IA",
       "category": "Professional services",
       "categories": [
         "Professional services",
@@ -11,9 +11,9 @@
       ],
       "iconType": "grow",
       "author": "oskr-leon",
-      "whatItRuns": "First contact for service firms",
-      "whatClientGets": "A diary filled without calls",
-      "exampleOutcome": "Up to 40% more enquiries handled"
+      "whatItRuns": "Primer contacto de empresas de servicios",
+      "whatClientGets": "Agenda llena sin hacer llamadas",
+      "exampleOutcome": "Hasta 40% más consultas atendidas"
     },
     {
       "id": "auto-repair-service-booking-whatsapp",
@@ -293,7 +293,7 @@
     },
     {
       "id": "local-business-dm-assistant",
-      "title": "Local business DM assistant",
+      "title": "Asistente de MD para negocios locales",
       "category": "Local services",
       "categories": [
         "Local services",
@@ -301,9 +301,9 @@
       ],
       "iconType": "chat",
       "author": "alejavi-rivera",
-      "whatItRuns": "Instagram FAQs for a local business",
-      "whatClientGets": "Answers in seconds",
-      "exampleOutcome": "Up to 70% of messages handled without staff"
+      "whatItRuns": "Las dudas de siempre por Instagram",
+      "whatClientGets": "Respuestas en segundos",
+      "exampleOutcome": "Hasta un 70% de mensajes resueltos sin el equipo"
     },
     {
       "id": "med-spa-price-list-instagram-dm",
