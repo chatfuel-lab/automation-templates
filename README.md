@@ -30,11 +30,18 @@ AI prompts inside `fuelyAutomationTemplate` and the `id`, which is the page slug
 template still answers each contact in whatever language they write in; that is the job of the
 prompts, not of the catalog copy.
 
-One exception: Dr. Juan F. González's author profile and his two dental templates
-(`dental-clinic-patient-assistant-whatsapp`, `dental-clinic-patient-assistant-instagram`) are
-written in Spanish, the language of the source material and of the audience they are promoted to.
+The exception is Spanish-speaking authors, whose profile and templates are written in Spanish, the
+language of their audience and of the people they promote them to — each in that author's own variety:
+
+| Author               | Variety              | Templates                                                                               |
+| -------------------- | -------------------- | --------------------------------------------------------------------------------------- |
+| Dr. Juan F. González | Latin American       | `dental-clinic-patient-assistant-whatsapp`, `dental-clinic-patient-assistant-instagram` |
+| Alejavi Rivera       | Spain (*tú*)         | `local-business-dm-assistant`                                                           |
+| Oskr León            | Costa Rica (*usted*) | `ai-reception-service-business-whatsapp`                                                |
+
 Their `id`, `category` and `categories` stay English — the first is the URL slug, the other two are
-schema enums shared across the catalog.
+schema enums shared across the catalog — and so do the `name` keys of `collectContactInfo` captures,
+which are field identifiers, not copy.
 
 ---
 
